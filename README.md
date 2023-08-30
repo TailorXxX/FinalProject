@@ -1,3 +1,14 @@
+Croitoru Costin - Final project
+
+This project was realized using React + Vite, Material UI, Sanity.io, Clerk, and other libraries.
+
+In order to start the project please proceed the followings:
+
+    * In your terminal: cd FinalProject
+                        npm install
+                        npm run dev
+                        ctrl + click on localhost link.
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
