@@ -9,6 +9,9 @@ In order to start the project please proceed the followings:
                         npm run dev
                         ctrl + click on localhost link.
 
+    * Clerk authentication e-mail: admin@test.com
+                        password: test
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
