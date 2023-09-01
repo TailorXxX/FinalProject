@@ -8,7 +8,7 @@ import Stack from '@mui/material/Stack';
 
 export default function NavBar() {
   const { isSignedIn, user } = useUser();
-  //   console.log(isSignedIn, user); Nu lasati console log-uri in commit !!!!!!!!!!!!!!!!!!!!!!!!
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">

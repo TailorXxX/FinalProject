@@ -1,16 +1,8 @@
-/* eslint-disable no-unused-vars */
-import AccordionNextUI from './components/AccordionNextUI';
-import NavbarMUI from './components/NavbarMUI';
-import { NextUIProvider } from '@nextui-org/react';
-import React from 'react';
-
-import {
-  ClerkProvider,
-  SignedIn,
-  SignedOut,
-  RedirectToSignIn,
-} from '@clerk/clerk-react';
+import { ClerkProvider, SignedIn, SignedOut } from '@clerk/clerk-react';
 import LumiVerse from './components/LumiVerse';
+
+import NavbarNextUI from './components/NavbarNextUI';
+import Cursor from './components/Cursor';
 
 const clerkPubKey = import.meta.env.VITE_REACT_APP_CLERK_PUBLISHABLE_KEY;
 
@@ -18,12 +10,15 @@ if (!import.meta.env.VITE_REACT_APP_CLERK_PUBLISHABLE_KEY) {
   throw new Error('Missing Publishable Key');
 }
 
-function App() {
+export default function App() {
   return (
     <>
       <ClerkProvider publishableKey={clerkPubKey}>
-        <NavbarMUI />
-        <SignedIn></SignedIn>
+        <Cursor />
+        <NavbarNextUI />
+        <SignedIn>
+          <LumiVerse />
+        </SignedIn>
 
         <SignedOut>
           <h3>Please Sign In!</h3>
@@ -32,8 +27,3 @@ function App() {
     </>
   );
 }
-function Welcome() {
-  return <div>Hello you are signed in</div>;
-}
-
-export default App;

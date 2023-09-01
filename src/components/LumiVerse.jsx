@@ -1,5 +1,7 @@
+import CardNextUI from './CardNextUI';
+
 function LumiVerse() {
-  return <div>LumiVerse</div>;
+  return <CardNextUI />;
 }
 
 export default LumiVerse;

@@ -1,22 +1,23 @@
-Croitoru Costin - Final project
+# LumiVerse
 
-This project was realized using React + Vite, Material UI, Sanity.io, Clerk, and other libraries.
+## Croitoru Costin - Final project
 
-In order to start the project please proceed the followings:
+This project was realized using React + Vite, NextUI, Sanity.io, Clerk, and other libraries.
 
-    * In your terminal: cd FinalProject
-                        npm install
-                        npm run dev
-                        ctrl + click on localhost link.
+## Getting Started
 
-    * Clerk authentication e-mail: admin@test.com
-                        password: test
+### Prerequisites
 
-# React + Vite
+- Node.js installed on your system
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Installation
 
-Currently, two official plugins are available:
+1. Install the dependencies: `npm install`
+2. Create an .env file based on .env.example
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Development Server
+
+1. Run `npm run dev`
+
+2. Clerk authentication e-mail: admin@test.com
+   password: test
