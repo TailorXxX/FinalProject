@@ -1,8 +1,9 @@
 import { ClerkProvider, SignedIn, SignedOut } from '@clerk/clerk-react';
+import { dark } from '@clerk/themes';
 import LumiVerse from './components/LumiVerse';
 
-import NavbarNextUI from './components/NavbarNextUI';
-import Cursor from './components/Cursor';
+// import Cursor from './components/Cursor';
+import NavbarNextUI from './components/NavbarNextUi';
 
 const clerkPubKey = import.meta.env.VITE_REACT_APP_CLERK_PUBLISHABLE_KEY;
 
@@ -13,8 +14,12 @@ if (!import.meta.env.VITE_REACT_APP_CLERK_PUBLISHABLE_KEY) {
 export default function App() {
   return (
     <>
-      <ClerkProvider publishableKey={clerkPubKey}>
-        <Cursor />
+      <ClerkProvider
+        appearance={{
+          baseTheme: dark,
+        }}
+        publishableKey={clerkPubKey}>
+        {/* <Cursor /> */}
         <NavbarNextUI />
         <SignedIn>
           <LumiVerse />

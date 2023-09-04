@@ -1,57 +1,84 @@
 import {
+  SignInButton,
+  SignOutButton,
+  SignUpButton,
+  UserButton,
+  useUser,
+} from '@clerk/clerk-react';
+// import { Typography } from '@mui/material';
+import {
   Navbar,
   NavbarBrand,
   NavbarContent,
   NavbarItem,
   Link,
-  Button,
 } from '@nextui-org/react';
 
 export default function NavbarNextUI() {
+  const { isSignedIn, user } = useUser();
+
+  const username = user?.username
+    ? user.username
+    : user?.primaryEmailAddress.emailAddress.split('@')[0];
+
   return (
     <Navbar>
+      {/* START: LOGO */}
       <NavbarBrand>
-        <p className="font-bold text-inherit">ACME</p>
+        <p className="font-bold text-inherit">LumiVerse</p>
       </NavbarBrand>
-      <NavbarContent
-        className="hidden sm:flex gap-4"
-        justify="center">
-        <NavbarItem>
-          <Link
-            color="foreground"
-            href="#">
-            Features
-          </Link>
-        </NavbarItem>
-        <NavbarItem isActive>
-          <Link
-            href="#"
-            aria-current="page">
-            Customers
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link
-            color="foreground"
-            href="#">
-            Integrations
-          </Link>
-        </NavbarItem>
-      </NavbarContent>
+      {/* END: LOGO */}
+
+      {/* START: LINKS */}
+      {isSignedIn && (
+        <NavbarContent
+          className="sm:flex gap-4"
+          justify="center">
+          <NavbarItem>
+            <Link
+              color="foreground"
+              href="#">
+              Features
+            </Link>
+          </NavbarItem>
+          <NavbarItem isActive>
+            <Link
+              href="#"
+              aria-current="page">
+              Customers
+            </Link>
+          </NavbarItem>
+          <NavbarItem>
+            <Link
+              color="foreground"
+              href="#">
+              Integrations
+            </Link>
+          </NavbarItem>
+        </NavbarContent>
+      )}
+      {/* END: LINKS */}
+
+      {/* START: USER */}
       <NavbarContent justify="end">
         <NavbarItem className="hidden lg:flex">
           <Link href="#">Login</Link>
         </NavbarItem>
-        <NavbarItem>
-          <Button
-            as={Link}
-            color="primary"
-            href="#"
-            variant="flat">
-            Sign Up
-          </Button>
+        <NavbarItem className="flex justify-start">
+          {/* {user && <Typography>Hello, {username}</Typography>} */}
+          <p>{username}</p>
+          <UserButton />
+          {isSignedIn ? (
+            <SignOutButton />
+          ) : (
+            <>
+              <SignUpButton />
+              <SignInButton />
+            </>
+          )}
         </NavbarItem>
       </NavbarContent>
+      {/* END: USER */}
     </Navbar>
   );
 }

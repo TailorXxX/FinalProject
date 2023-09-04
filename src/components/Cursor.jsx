@@ -1,8 +1,6 @@
-/* eslint-disable no-unused-vars */
-import React from 'react';
 import AnimatedCursor from 'react-animated-cursor';
 
-function Cursor() {
+export default function Cursor() {
   return (
     <AnimatedCursor
       innerSize={10}
@@ -14,5 +12,3 @@ function Cursor() {
     />
   );
 }
-
-export default Cursor;
