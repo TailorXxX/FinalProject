@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Page from '../layout/Page';
 
 export default function GPTComponent() {
   const [input, setInput] = useState('');
@@ -35,13 +36,13 @@ export default function GPTComponent() {
   };
 
   return (
-    <div>
+    <Page>
       <textarea
         value={input}
         onChange={e => setInput(e.target.value)}
         placeholder="Ask something..."></textarea>
       <button onClick={fetchGPTResponse}>Submit</button>
       <p>{response}</p>
-    </div>
+    </Page>
   );
 }

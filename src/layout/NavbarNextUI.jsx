@@ -11,8 +11,8 @@ import {
   NavbarBrand,
   NavbarContent,
   NavbarItem,
-  Link,
 } from '@nextui-org/react';
+import { Link } from 'react-router-dom';
 
 export default function NavbarNextUI() {
   const { isSignedIn, user } = useUser();
@@ -25,7 +25,9 @@ export default function NavbarNextUI() {
     <Navbar>
       {/* START: LOGO */}
       <NavbarBrand>
-        <p className="font-bold text-inherit">LumiVerse</p>
+        <Link to={'/'}>
+          <p className="font-bold text-inherit">LumiVerse</p>
+        </Link>
       </NavbarBrand>
       {/* END: LOGO */}
 
@@ -37,13 +39,13 @@ export default function NavbarNextUI() {
           <NavbarItem>
             <Link
               color="foreground"
-              href="#">
-              Features
+              to="/chat">
+              Chat
             </Link>
           </NavbarItem>
           <NavbarItem isActive>
             <Link
-              href="#"
+              to="/customers"
               aria-current="page">
               Customers
             </Link>
@@ -51,7 +53,7 @@ export default function NavbarNextUI() {
           <NavbarItem>
             <Link
               color="foreground"
-              href="#">
+              to="integrations">
               Integrations
             </Link>
           </NavbarItem>

@@ -4,7 +4,9 @@ export default function AccordionNextUI() {
   const defaultContent = 'News Feed';
 
   return (
-    <Accordion selectionMode="multiple">
+    <Accordion
+      selectionMode="multiple"
+      className="static">
       <AccordionItem
         key="1"
         aria-label="Accordion 1"

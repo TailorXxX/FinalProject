@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useUsers, useFollowButton } from '../context/UsersContext';
 
 import {
   Card,
@@ -8,25 +8,19 @@ import {
   Avatar,
   Button,
 } from '@nextui-org/react';
+import Page from '../../layout/Page';
 
 export default function UsersPosts() {
-  const [users, setUsers] = useState([]);
-  const [isFollowed, setIsFollowed] = useState(false);
-
-  useEffect(() => {
-    fetch('https://randomuser.me/api/?results=5')
-      .then(res => res.json())
-      .then(data => setUsers(data));
-  }, []);
-
+  const users = useUsers();
+  const onFollowButtonClick = useFollowButton();
   return (
-    <div>
-      {users.results?.map(user => (
+    <Page>
+      {users.map(user => (
         <Card
           key={user.login.uuid}
-          className="mt-2 border">
-          <CardHeader className="justify-between ">
-            <div className="flex gap-5">
+          className="w-max mt-2 border">
+          <CardHeader className="justify-between">
+            <div className="flex">
               <Avatar
                 isBordered
                 radius="full"
@@ -37,23 +31,20 @@ export default function UsersPosts() {
                 <h4 className="text-small font-semibold leading-none text-default-600 p-2">
                   {user.name.first}
                 </h4>
-                <h5 className="text-small tracking-tight text-default-400">
-                  {user.email}
-                </h5>
               </div>
             </div>
             <Button
               className={
-                isFollowed
+                user.isFollowed
                   ? 'bg-transparent text-foreground border-default-200'
                   : ''
               }
               color="primary"
               radius="full"
               size="sm"
-              variant={isFollowed ? 'bordered' : 'solid'}
-              onPress={() => setIsFollowed(!isFollowed)}>
-              {isFollowed ? 'Unfollow' : 'Follow'}
+              variant={user.isFollowed ? 'bordered' : 'solid'}
+              onPress={() => onFollowButtonClick(user)}>
+              {user.isFollowed ? 'Unfollow' : 'Follow'}
             </Button>
           </CardHeader>
           <CardBody className="px-3 py-0 overflow-hidden text-small text-default-400">
@@ -81,8 +72,9 @@ export default function UsersPosts() {
               <p className="text-default-400 text-small">Followers</p>
             </div>
           </CardFooter>
+          <div>{user.comments}</div>
         </Card>
       ))}
-    </div>
+    </Page>
   );
 }
