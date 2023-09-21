@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import { getComments, getUsersWithCount } from '../user.service';
+import { getUsersWithCount } from '../user.service';
 
 const UsersListContext = createContext();
 const SetIsFollowedContext = createContext();
@@ -16,12 +16,10 @@ export const UsersProvider = ({ children }) => {
 
   async function fetchUsers() {
     const users = await getUsersWithCount();
-    const comments = await getComments(Math.floor(Math.random() * 10));
 
     const updatedUsers = users.map(user => ({
       ...user,
       isFollowed: false,
-      comments: comments.map(comment => comment.body),
     }));
 
     setUsers(updatedUsers);

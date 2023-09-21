@@ -4,3 +4,4 @@ const dummyJsonUrl = 'https://dummyjson.com';
 export const usersList = `${randomUsersUrl}/?results=`;
 
 export const posts = `${dummyJsonUrl}/posts`;
+export const users = `${dummyJsonUrl}/users`;

@@ -72,7 +72,6 @@ export default function UsersPosts() {
               <p className="text-default-400 text-small">Followers</p>
             </div>
           </CardFooter>
-          <div>{user.comments}</div>
         </Card>
       ))}
     </Page>

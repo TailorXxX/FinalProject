@@ -63,9 +63,9 @@ export default function NavbarNextUI() {
 
       {/* START: USER */}
       <NavbarContent justify="end">
-        <NavbarItem className="hidden lg:flex">
+        {/* <NavbarItem className="hidden lg:flex">
           <Link href="#">Login</Link>
-        </NavbarItem>
+        </NavbarItem> */}
         <NavbarItem className="flex justify-start">
           {/* {user && <Typography>Hello, {username}</Typography>} */}
           <p>{username}</p>
