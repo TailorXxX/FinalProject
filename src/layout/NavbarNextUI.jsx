@@ -35,29 +35,7 @@ export default function NavbarNextUI() {
       {isSignedIn && (
         <NavbarContent
           className="sm:flex gap-4"
-          justify="center">
-          <NavbarItem>
-            <Link
-              color="foreground"
-              to="/chat">
-              Chat
-            </Link>
-          </NavbarItem>
-          <NavbarItem isActive>
-            <Link
-              to="/customers"
-              aria-current="page">
-              Customers
-            </Link>
-          </NavbarItem>
-          <NavbarItem>
-            <Link
-              color="foreground"
-              to="integrations">
-              Integrations
-            </Link>
-          </NavbarItem>
-        </NavbarContent>
+          justify="center"></NavbarContent>
       )}
       {/* END: LINKS */}
 

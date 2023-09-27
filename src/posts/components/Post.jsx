@@ -6,8 +6,9 @@ import {
   Avatar,
   Button,
 } from '@nextui-org/react';
-import { getUserById } from '../users/user.service';
+import { getUserById } from '../../users/user.service';
 import { useEffect, useState } from 'react';
+import PostsComments from './PostsComments';
 
 export default function Post({ post }) {
   const [user, setUser] = useState(null);
@@ -40,7 +41,7 @@ export default function Post({ post }) {
             isBordered
             radius="full"
             size="md"
-            src={`https://i.pravatar.cc/150?u=${user?.image}`}
+            src={user?.image}
           />
           <div className="flex flex-col gap-1 items-start justify-center">
             <h4 className="text-small font-semibold leading-none text-default-600 p-2">
@@ -81,7 +82,14 @@ export default function Post({ post }) {
         </div>
         <div className="flex gap-1">
           <p className="font-semibold text-default-400 text-small">97.1K</p>
-          <p className="text-default-400 text-small">Followers</p>
+          <p className="text-default-400 text-small">Follow</p>
+        </div>
+        <div>
+          <PostsComments
+            postId={post.id}
+            postTitle={post.title}
+            userAPI={user}
+          />
         </div>
       </CardFooter>
     </Card>

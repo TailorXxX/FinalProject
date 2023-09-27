@@ -3,7 +3,6 @@
 @import 'tailwindcss/utilities';
 
 body {
-  background-color: rgb(51, 56, 51);
   margin: 0;
   height: 100vh;
 }
@@ -24,4 +23,39 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.game {
+}
+
+.board {
+}
+
+.game-info {
+}
+
+.status {
+}
+.board-row {
+  display: flex;
+}
+.square {
+  color: #ff233f;
+  border: 2px solid #ff233f;
+  height: 40px;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 0;
+}
+
+.boards-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.board-style {
+  border-radius: 5px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
 }
