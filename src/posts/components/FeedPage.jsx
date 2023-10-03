@@ -10,7 +10,6 @@ function FeedPage() {
   useEffect(() => {
     fetchPosts();
   }, []);
-  console.log(user);
 
   async function fetchPosts() {
     const fetchedPosts = await getPosts();

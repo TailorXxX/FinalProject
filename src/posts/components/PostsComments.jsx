@@ -8,12 +8,14 @@ import {
   useDisclosure,
   Input,
 } from '@nextui-org/react';
+
 import { getComments } from '../posts.service';
 import { useEffect, useState } from 'react';
 import Comment from './Comment';
 import { useUser } from '@clerk/clerk-react';
+import UserAvatar from '../../users/components/UserAvatar';
 
-export default function PostsComments({ postId, postTitle, userAPI }) {
+export default function PostsComments({ postId, postTitle, postUser }) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [comments, setComments] = useState([]);
   const [comment, setComment] = useState(null);
@@ -24,8 +26,12 @@ export default function PostsComments({ postId, postTitle, userAPI }) {
     setComment(comment);
   };
   useEffect(() => {
+    async function fetchComments() {
+      const fetchedComments = await getComments(postId);
+      setComments(fetchedComments);
+    }
     fetchComments();
-  }, []);
+  }, [postId]);
 
   function addComment(e) {
     e.preventDefault();
@@ -42,39 +48,50 @@ export default function PostsComments({ postId, postTitle, userAPI }) {
     e.target.reset();
   }
 
-  async function fetchComments() {
-    const fetchedComments = await getComments(postId);
-    setComments(fetchedComments);
-  }
-
   return (
     <>
-      <Button onPress={onOpen}>Comments</Button>
+      <Button
+        className="bg-transparent"
+        isIconOnly
+        aria-label="Comment"
+        onPress={onOpen}
+        color="hsl(var(--nextui-default-400) / var(--nextui-default-400-opacity, var(--tw-text-opacity)))">
+        <i className="bi bi-chat"></i>
+      </Button>
+      {/* <Button
+        className=" bg-gradient-to-tr from-blue-600 to-grey-200 text-white shadow-lg"
+        radius="full"
+        onPress={onOpen}>
+        <img src="../posts/assets/comment.png" />
+      </Button> */}
       <Modal
-        className="max-h-96 overflow-y-scroll"
+        className="max-h-96 max-w-2xl overflow-y-scroll"
         isOpen={isOpen}
         onOpenChange={onOpenChange}>
         <ModalContent>
-          {onClose => (
+          {
             <>
               <ModalHeader className="flex flex-col gap-1">
-                {userAPI.firstName}&apos;s post: {postTitle}
+                <UserAvatar userId={postUser?.id} />
+                {postTitle}
               </ModalHeader>
               <ModalBody>
+                <p>Comments:</p>
                 {comments.map(comment => (
                   <Comment
                     key={comment.id}
                     comment={comment.body}
-                    userAPI={comment.user}
+                    userId={comment.user.id}
                   />
                 ))}
               </ModalBody>
               <ModalFooter>
                 <form
-                  className="flex"
+                  className="flex w-max grow"
                   onSubmit={addComment}
                   method="post">
                   <Input
+                    className="h-11 m-2"
                     type="text"
                     name="comment"
                     label="Comment"
@@ -83,14 +100,16 @@ export default function PostsComments({ postId, postTitle, userAPI }) {
                     placeholder="Type your comment"
                   />
                   <Button
+                    className="flex h-11 m-2"
                     color="primary"
                     type="submit">
+                    <i className="bi bi-send-fill"></i>
                     Send
                   </Button>
                 </form>
               </ModalFooter>
             </>
-          )}
+          }
         </ModalContent>
       </Modal>
     </>

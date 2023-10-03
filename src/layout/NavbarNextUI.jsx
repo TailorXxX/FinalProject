@@ -7,6 +7,10 @@ import {
 } from '@clerk/clerk-react';
 // import { Typography } from '@mui/material';
 import {
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
   Navbar,
   NavbarBrand,
   NavbarContent,
@@ -34,25 +38,56 @@ export default function NavbarNextUI() {
       {/* START: LINKS */}
       {isSignedIn && (
         <NavbarContent
-          className="sm:flex gap-4"
-          justify="center"></NavbarContent>
+          className="sm:flex gap-6"
+          justify="center">
+          <div className="flex gap-4">
+            <div className="">
+              <Link to={'/'}>
+                <i className="bi bi-house nav-icons"></i>
+              </Link>
+            </div>
+            <div>
+              <Link to={''}>
+                <i className="bi bi-people nav-icons"></i>
+              </Link>
+            </div>
+            <div className="games-dropdown">
+              <Dropdown>
+                <DropdownTrigger>
+                  <i className="bi bi-joystick nav-icons"></i>
+                </DropdownTrigger>
+                <DropdownMenu>
+                  <DropdownItem key="chess">
+                    <Link to="/chess">Chess</Link>
+                  </DropdownItem>
+                  <DropdownItem key="tictactoe">
+                    <Link to="/tictactoegame">TicTacToe Game</Link>
+                  </DropdownItem>
+                  <DropdownItem key="edit">Edit file</DropdownItem>
+                  <DropdownItem
+                    key="delete"
+                    className="text-danger"
+                    color="danger">
+                    Delete file
+                  </DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
+            </div>
+          </div>
+        </NavbarContent>
       )}
       {/* END: LINKS */}
 
       {/* START: USER */}
       <NavbarContent justify="end">
-        {/* <NavbarItem className="hidden lg:flex">
-          <Link href="#">Login</Link>
-        </NavbarItem> */}
-        <NavbarItem className="flex justify-start">
-          {/* {user && <Typography>Hello, {username}</Typography>} */}
-          <p>{username}</p>
+        <NavbarItem className="flex justify-start align-center">
+          <p className="m-2">{username}</p>
           <UserButton />
           {isSignedIn ? (
-            <SignOutButton />
+            <SignOutButton className="m-2" />
           ) : (
             <>
-              <SignUpButton />
+              <SignUpButton className="m-2" />
               <SignInButton />
             </>
           )}

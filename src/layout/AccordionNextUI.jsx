@@ -11,7 +11,7 @@ export default function AccordionNextUI() {
       <AccordionItem
         key="1"
         aria-label="Accordion 1"
-        title="News Feed">
+        title="Profile page">
         {defaultContent}
       </AccordionItem>
       <AccordionItem

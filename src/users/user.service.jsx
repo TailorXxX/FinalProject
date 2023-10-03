@@ -1,5 +1,3 @@
-import { users } from '../config/BASE_URL';
-
 export async function getUsersWithCount(count = 5) {
   // const res = await fetch(`${users}?limit=${count}`);
   // const data = await res.json();
@@ -6201,7 +6199,16 @@ export async function getUsersWithCount(count = 5) {
       userAgent:
         'Mozilla/5.0 (Windows; U; Windows NT 6.0; ja-JP) AppleWebKit/533.16 (KHTML, like Gecko) Version/5.0 Safari/533.16',
     },
-  ].slice(0, count);
+  ]
+    .map(user => {
+      const updatedUser = {
+        ...user,
+        image: `https://i.pravatar.cc/150?u=${user.id}`,
+        isFollowed: Math.round(Math.random()) == 1 ? true : false,
+      };
+      return updatedUser;
+    })
+    .slice(0, count);
 }
 
 export async function getUserById(id) {
@@ -6209,10 +6216,5 @@ export async function getUserById(id) {
   // const data = await res.json();
   const data = await getUsersWithCount(100);
   const user = data.filter(user => user.id == id)[0];
-  const updatedUser = {
-    ...user,
-    image: `https://i.pravatar.cc/150?u=${user.id}`,
-    isFollowed: Math.round(Math.random()) == 1 ? true : false,
-  };
-  return updatedUser;
+  return user;
 }

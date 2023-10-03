@@ -7,6 +7,14 @@ body {
   height: 100vh;
 }
 
+.bi.nav-icons {
+  font-size: 20px !important;
+}
+
+.games-dropdown {
+  cursor: pointer;
+}
+
 .cursor {
   width: 15px;
   height: 15px;
@@ -25,17 +33,6 @@ body {
   justify-content: center;
 }
 
-.game {
-}
-
-.board {
-}
-
-.game-info {
-}
-
-.status {
-}
 .board-row {
   display: flex;
 }

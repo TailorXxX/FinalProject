@@ -3,28 +3,18 @@ import {
   CardHeader,
   CardBody,
   CardFooter,
-  Avatar,
   Button,
 } from '@nextui-org/react';
-import { getUserById } from '../../users/user.service';
-import { useEffect, useState } from 'react';
+
 import PostsComments from './PostsComments';
+import UserAvatar from '../../users/components/UserAvatar';
+import { useFollowButton, useUserById } from '../../users/context/UsersContext';
+import { useState } from 'react';
 
 export default function Post({ post }) {
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    fetchUserById(post.userId);
-  }, [post.userId]);
-
-  async function fetchUserById(id) {
-    const fetchedUser = await getUserById(id);
-    setUser(fetchedUser);
-  }
-
-  const toggleFollowState = user => {
-    return { ...user, isFollowed: !user.isFollowed };
-  };
+  const getUserById = useUserById();
+  const [user, setUser] = useState(getUserById(post.userId));
+  const toggleFollowState = useFollowButton();
 
   function onFollowButtonClick(user) {
     const updatedUser = toggleFollowState(user);
@@ -37,17 +27,7 @@ export default function Post({ post }) {
       className="w-96 mt-2 border">
       <CardHeader className="justify-between">
         <div className="flex">
-          <Avatar
-            isBordered
-            radius="full"
-            size="md"
-            src={user?.image}
-          />
-          <div className="flex flex-col gap-1 items-start justify-center">
-            <h4 className="text-small font-semibold leading-none text-default-600 p-2">
-              {user?.firstName}
-            </h4>
-          </div>
+          <UserAvatar userId={post.userId} />
         </div>
         <Button
           className={
@@ -84,11 +64,11 @@ export default function Post({ post }) {
           <p className="font-semibold text-default-400 text-small">97.1K</p>
           <p className="text-default-400 text-small">Follow</p>
         </div>
-        <div>
+        <div className="flex gap-1">
           <PostsComments
             postId={post.id}
             postTitle={post.title}
-            userAPI={user}
+            postUser={user}
           />
         </div>
       </CardFooter>

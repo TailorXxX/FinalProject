@@ -1,21 +1,15 @@
 import { User } from '@nextui-org/react';
 import { Link } from 'react-router-dom';
-import { getUserById } from '../user.service';
-import { useEffect, useState } from 'react';
+
+import { useState } from 'react';
+import { useUserById } from '../context/UsersContext';
 
 function UserAvatar({ userId }) {
-  const [user, setUser] = useState(null);
+  const getUserById = useUserById();
+  const [user, setUser] = useState(getUserById(userId));
 
-  useEffect(() => {
-    fetchUser();
-  }, []);
-
-  async function fetchUser() {
-    const fetchedUser = await getUserById(userId);
-    setUser(fetchedUser);
-  }
   return (
-    <Link to="">
+    <Link to={`/userprofile/${userId}`}>
       <User
         name={user?.firstName}
         avatarProps={{

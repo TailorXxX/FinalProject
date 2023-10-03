@@ -1,4 +1,4 @@
-import { posts } from '../config/BASE_URL';
+// import { posts } from '../config/BASE_URL';
 
 export async function getComments(postId) {
   //   try {

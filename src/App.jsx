@@ -11,6 +11,8 @@ import TicTacToeGame from './games/tictactoe/TicTacToeGame';
 import ThemeProvider from './games/tictactoe/ThemeContext';
 import Chessboard from './games/chess/Chessboard';
 
+import UserProfilePage from './users/components/UserProfilePage';
+
 const clerkPubKey = import.meta.env.VITE_REACT_APP_CLERK_PUBLISHABLE_KEY;
 
 if (!import.meta.env.VITE_REACT_APP_CLERK_PUBLISHABLE_KEY) {
@@ -38,6 +40,9 @@ export default function App() {
                   <Route
                     index
                     element={<FeedPage />}></Route>
+                  <Route
+                    path="/userprofile/:userId"
+                    element={<UserProfilePage />}></Route>
                   <Route
                     path="/chess"
                     element={<Chessboard />}></Route>
