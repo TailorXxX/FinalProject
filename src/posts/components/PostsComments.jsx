@@ -35,9 +35,6 @@ export default function PostsComments({ postId, postTitle, postUser }) {
 
   function addComment(e) {
     e.preventDefault();
-    // const form = e.target;
-    // const formData = new FormData(form);
-    // console.log(formData);
 
     const detailedComment = {
       id: comments.length + 1,

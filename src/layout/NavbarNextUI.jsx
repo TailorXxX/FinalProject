@@ -47,7 +47,7 @@ export default function NavbarNextUI() {
               </Link>
             </div>
             <div>
-              <Link to={''}>
+              <Link to={'friends'}>
                 <i className="bi bi-people nav-icons"></i>
               </Link>
             </div>

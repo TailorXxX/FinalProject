@@ -100,7 +100,6 @@ export default function ChatGPT() {
                 ) : null
               }>
               {messages.map((message, i) => {
-                console.log(message);
                 return (
                   <Message
                     key={i}

@@ -13,7 +13,6 @@ export const useUserById = () => useContext(UserByIdContext);
 export const UsersProvider = ({ children }) => {
   const [users, setUsers] = useState([]);
   const { user } = useUser();
-  console.log(user);
 
   useEffect(() => {
     fetchUsers();
@@ -37,7 +36,6 @@ export const UsersProvider = ({ children }) => {
   }
 
   function toggleFollowState(userToUpdate) {
-    console.log(userToUpdate);
     let updatedUser = userToUpdate;
 
     const updatedUsers = users.map(userFromList => {
@@ -48,7 +46,7 @@ export const UsersProvider = ({ children }) => {
 
       return { ...userFromList };
     });
-    console.log(updatedUser);
+
     setUsers(updatedUsers);
     return updatedUser;
   }

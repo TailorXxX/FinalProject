@@ -12,6 +12,7 @@ import ThemeProvider from './games/tictactoe/ThemeContext';
 import Chessboard from './games/chess/Chessboard';
 
 import UserProfilePage from './users/components/UserProfilePage';
+import FriendsPage from './users/components/FriendsPage';
 
 const clerkPubKey = import.meta.env.VITE_REACT_APP_CLERK_PUBLISHABLE_KEY;
 
@@ -43,6 +44,9 @@ export default function App() {
                   <Route
                     path="/userprofile/:userId"
                     element={<UserProfilePage />}></Route>
+                  <Route
+                    path="/friends"
+                    element={<FriendsPage />}></Route>
                   <Route
                     path="/chess"
                     element={<Chessboard />}></Route>

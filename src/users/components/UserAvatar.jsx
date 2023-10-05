@@ -6,6 +6,7 @@ import { useUserById } from '../context/UsersContext';
 
 function UserAvatar({ userId }) {
   const getUserById = useUserById();
+  // eslint-disable-next-line no-unused-vars
   const [user, setUser] = useState(getUserById(userId));
 
   return (

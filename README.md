@@ -19,5 +19,5 @@ This project was realized using React + Vite, NextUI, Sanity.io, Clerk, and othe
 
 1. Run `npm run dev`
 
-2. Clerk authentication e-mail: admin@test.com
-   password: test
+2. Clerk authentication e-mail: `admin@test.com`
+   password: `test`
