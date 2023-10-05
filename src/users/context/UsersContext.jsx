@@ -1,6 +1,6 @@
+import { useUser } from '@clerk/clerk-react';
 import { createContext, useContext, useEffect, useState } from 'react';
 import { getUsersWithCount } from '../user.service';
-import { useUser } from '@clerk/clerk-react';
 
 const UsersListContext = createContext();
 const SetIsFollowedContext = createContext();

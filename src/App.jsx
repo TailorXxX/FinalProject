@@ -1,18 +1,17 @@
 import { ClerkProvider, SignedIn, SignedOut } from '@clerk/clerk-react';
 import { dark } from '@clerk/themes';
 
-import NavbarNextUI from './layout/NavbarNextUI';
-import { UsersProvider } from './users/context/UsersContext';
 import { Route, Routes } from 'react-router-dom';
-import AccordionNextUI from './layout/AccordionNextUI';
 import ChatGPT from './chat-gpt/ChatGPT';
-import FeedPage from './posts/components/FeedPage';
-import TicTacToeGame from './games/tictactoe/TicTacToeGame';
-import ThemeProvider from './games/tictactoe/ThemeContext';
 import Chessboard from './games/chess/Chessboard';
+import ThemeProvider from './games/tictactoe/ThemeContext';
+import TicTacToeGame from './games/tictactoe/TicTacToeGame';
+import NavbarNextUI from './layout/NavbarNextUI';
+import FeedPage from './posts/components/FeedPage';
+import { UsersProvider } from './users/context/UsersContext';
 
-import UserProfilePage from './users/components/UserProfilePage';
 import FriendsPage from './users/components/FriendsPage';
+import UserProfilePage from './users/components/UserProfilePage';
 
 const clerkPubKey = import.meta.env.VITE_REACT_APP_CLERK_PUBLISHABLE_KEY;
 
@@ -33,8 +32,8 @@ export default function App() {
         <SignedIn>
           <UsersProvider>
             <div className="grid grid-cols-12">
-              <div className="col-start-3 col-end-5 ">
-                <AccordionNextUI />
+              <div className="col-start-2 col-end-4 ">
+                {/* <AccordionNextUI /> */}
               </div>
               <div className="col-start-5 col-end-9 ">
                 <Routes>
@@ -62,7 +61,7 @@ export default function App() {
                     }></Route>
                 </Routes>
               </div>
-              <div className="col-start-9 col-end-11 "></div>
+              <div className="col-start-10 col-end-12 "></div>
             </div>
           </UsersProvider>
         </SignedIn>

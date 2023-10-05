@@ -26,7 +26,7 @@ export default function NavbarNextUI() {
     : user?.primaryEmailAddress.emailAddress.split('@')[0];
 
   return (
-    <Navbar>
+    <Navbar className="flex justify-center">
       {/* START: LOGO */}
       <NavbarBrand>
         <Link to={'/'}>
@@ -38,9 +38,9 @@ export default function NavbarNextUI() {
       {/* START: LINKS */}
       {isSignedIn && (
         <NavbarContent
-          className="sm:flex gap-6"
+          className="sm:flex"
           justify="center">
-          <div className="flex gap-4">
+          <div className="flex justify-center gap-4">
             <div className="">
               <Link to={'/'}>
                 <i className="bi bi-house nav-icons"></i>
@@ -62,13 +62,6 @@ export default function NavbarNextUI() {
                   </DropdownItem>
                   <DropdownItem key="tictactoe">
                     <Link to="/tictactoegame">TicTacToe Game</Link>
-                  </DropdownItem>
-                  <DropdownItem key="edit">Edit file</DropdownItem>
-                  <DropdownItem
-                    key="delete"
-                    className="text-danger"
-                    color="danger">
-                    Delete file
                   </DropdownItem>
                 </DropdownMenu>
               </Dropdown>

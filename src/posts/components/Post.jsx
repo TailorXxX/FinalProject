@@ -1,15 +1,15 @@
 import {
+  Button,
   Card,
-  CardHeader,
   CardBody,
   CardFooter,
-  Button,
+  CardHeader,
 } from '@nextui-org/react';
 
-import PostsComments from './PostsComments';
+import { useState } from 'react';
 import UserAvatar from '../../users/components/UserAvatar';
 import { useFollowButton, useUserById } from '../../users/context/UsersContext';
-import { useState } from 'react';
+import PostsComments from './PostsComments';
 
 export default function Post({ post }) {
   const getUserById = useUserById();
@@ -24,7 +24,7 @@ export default function Post({ post }) {
   return (
     <Card
       key={post.id}
-      className="w-96 mt-2 border">
+      className="max-w mt-2 border">
       <CardHeader className="justify-between">
         <div className="flex">
           <UserAvatar userId={post.userId} />

@@ -1,6 +1,6 @@
+import { Divider, Input, Spinner } from '@nextui-org/react';
 import { useEffect, useState } from 'react';
 import { useUsers } from '../context/UsersContext';
-import { Input } from '@nextui-org/react';
 import UserAvatar from './UserAvatar';
 
 export default function FriendsPage() {
@@ -8,6 +8,14 @@ export default function FriendsPage() {
 
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredUsers, setFilteredUsers] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulating a delay (e.g., 2 seconds) to see the spinner
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+  }, []);
 
   useEffect(() => {
     const result = getUsers.filter(
@@ -17,6 +25,14 @@ export default function FriendsPage() {
     );
     setFilteredUsers(result);
   }, [searchTerm, getUsers]);
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center mt-60">
+        <Spinner />
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -30,11 +46,11 @@ export default function FriendsPage() {
       <div className="flex flex-col m-4 gap-4">
         {filteredUsers.map(user => (
           <div key={user.id}>
-            {' '}
             <UserAvatar
               key={user.id}
               userId={user.id}
             />
+            <Divider />
           </div>
         ))}
       </div>
