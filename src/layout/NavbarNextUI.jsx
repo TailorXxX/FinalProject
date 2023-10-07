@@ -11,6 +11,7 @@ import {
   DropdownItem,
   DropdownMenu,
   DropdownTrigger,
+  Image,
   Navbar,
   NavbarBrand,
   NavbarContent,
@@ -30,7 +31,15 @@ export default function NavbarNextUI() {
       {/* START: LOGO */}
       <NavbarBrand>
         <Link to={'/'}>
-          <p className="font-bold text-inherit">LumiVerse</p>
+          <div className="hover-container">
+            <Image
+              className="navbar-logo"
+              width={60}
+              alt="LumiVerse Logo"
+              src="../../assets/logo.png"
+            />
+            <span className="hover-text">LumiVerse</span>
+          </div>
         </Link>
       </NavbarBrand>
       {/* END: LOGO */}

@@ -2,11 +2,10 @@ import { useEffect, useState } from 'react';
 import Page from '../../layout/Page';
 import { getPosts } from '../posts.service';
 import Post from './Post';
-import { useUser } from '@clerk/clerk-react';
 
 function FeedPage() {
   const [posts, setPosts] = useState([]);
-  const { user } = useUser();
+
   useEffect(() => {
     fetchPosts();
   }, []);
@@ -18,8 +17,6 @@ function FeedPage() {
 
   return (
     <Page>
-      {user.fullName}
-
       {posts.map(post => (
         <Post
           key={post.id}

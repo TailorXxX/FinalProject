@@ -24,7 +24,7 @@ export default function Post({ post }) {
   return (
     <Card
       key={post.id}
-      className="max-w mt-2 border bg-gray-600 bg-opacity-25 backdrop-blur-sm backdrop-filter">
+      className="max-w mt-2 bg-gray-600 bg-opacity-25 backdrop-blur-sm backdrop-filter">
       <CardHeader className="justify-between">
         <div className="flex">
           <UserAvatar userId={post.userId} />

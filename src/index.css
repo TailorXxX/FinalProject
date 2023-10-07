@@ -24,6 +24,33 @@ body {
   position: absolute;
 }
 
+.hover-container {
+  position: relative;
+  display: inline-block;
+}
+
+.hover-text {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  left: 70%; /* start from a position closer to the image */
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  padding: 5px;
+  border-radius: 3px;
+  white-space: nowrap;
+  transition: opacity 0.3s, left 0.3s, visibility 0.3s;
+  font-size: large;
+  color: rgb(0, 221, 255);
+}
+
+.hover-container:hover .hover-text {
+  opacity: 1;
+  visibility: visible;
+  left: 100%;
+}
+
 .cl-userButtonPopoverCard .cl-card .cl-userButton-popover {
   cursor: pointer;
 }
