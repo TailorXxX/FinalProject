@@ -10,6 +10,7 @@ import NavbarNextUI from './layout/NavbarNextUI';
 import FeedPage from './posts/components/FeedPage';
 import { UsersProvider } from './users/context/UsersContext';
 
+import StarfieldBackground from './layout/StarfieldBackground';
 import FriendsPage from './users/components/FriendsPage';
 import UserProfilePage from './users/components/UserProfilePage';
 
@@ -22,12 +23,14 @@ if (!import.meta.env.VITE_REACT_APP_CLERK_PUBLISHABLE_KEY) {
 export default function App() {
   return (
     <>
+      <StarfieldBackground />
       <ClerkProvider
         appearance={{
           baseTheme: dark,
         }}
         publishableKey={clerkPubKey}>
         {/* <Cursor /> */}
+
         <NavbarNextUI />
         <SignedIn>
           <UsersProvider>

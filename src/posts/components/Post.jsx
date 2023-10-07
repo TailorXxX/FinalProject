@@ -24,7 +24,7 @@ export default function Post({ post }) {
   return (
     <Card
       key={post.id}
-      className="max-w mt-2 border">
+      className="max-w mt-2 border bg-gray-600 bg-opacity-25 backdrop-blur-sm backdrop-filter">
       <CardHeader className="justify-between">
         <div className="flex">
           <UserAvatar userId={post.userId} />
@@ -43,9 +43,9 @@ export default function Post({ post }) {
           {user?.isFollowed ? 'Unfollow' : 'Follow'}
         </Button>
       </CardHeader>
-      <CardBody className="px-3 py-0 overflow-hidden text-small text-default-400">
+      <CardBody className="px-3 py-0 overflow-hidden text-small text-default">
         <p>{post.body}</p>
-        <span className="pt-2 text-xs font-bold">
+        <span className="pt-2 text-xs font-bold ">
           {post.tags.map(tag => `#${tag} `)}
           <span
             className="py-2"
@@ -55,14 +55,14 @@ export default function Post({ post }) {
           </span>
         </span>
       </CardBody>
-      <CardFooter className="gap-3">
+      <CardFooter className="gap-3 font-semibold text-default text-small">
         <div className="flex gap-1">
-          <p className="font-semibold text-default-400 text-small">4</p>
-          <p className=" text-default-400 text-small">Following</p>
+          <p>4</p>
+          <p>Following</p>
         </div>
         <div className="flex gap-1">
-          <p className="font-semibold text-default-400 text-small">97.1K</p>
-          <p className="text-default-400 text-small">Follow</p>
+          <p>97.1K</p>
+          <p>Follow</p>
         </div>
         <div className="flex gap-1">
           <PostsComments

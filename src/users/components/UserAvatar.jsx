@@ -11,14 +11,17 @@ function UserAvatar({ userId }) {
 
   return (
     <Link to={`/userprofile/${userId}`}>
-      <User
-        name={user?.firstName}
-        avatarProps={{
-          src: user?.image,
-          isBordered: true,
-          color: 'primary',
-        }}
-      />
+      <div className="flex m-4 ">
+        <User
+          className="flex gap-4 "
+          name={`${user?.firstName} ${user?.lastName}`}
+          avatarProps={{
+            src: user?.image,
+            isBordered: true,
+            color: 'primary',
+          }}
+        />
+      </div>
     </Link>
   );
 }

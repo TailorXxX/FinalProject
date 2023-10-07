@@ -1,5 +1,6 @@
 import { Divider, Input, Spinner } from '@nextui-org/react';
 import { useEffect, useState } from 'react';
+import LoadMoreButton from '../../layout/LoadMoreButton';
 import { useUsers } from '../context/UsersContext';
 import UserAvatar from './UserAvatar';
 
@@ -43,16 +44,20 @@ export default function FriendsPage() {
           onChange={e => setSearchTerm(e.target.value)}
         />
       </div>
-      <div className="flex flex-col m-4 gap-4">
-        {filteredUsers.map(user => (
-          <div key={user.id}>
-            <UserAvatar
+      <div className="">
+        <LoadMoreButton>
+          {filteredUsers.map(user => (
+            <div
               key={user.id}
-              userId={user.id}
-            />
-            <Divider />
-          </div>
-        ))}
+              style={{ height: '70px' }}>
+              <UserAvatar
+                key={user.id}
+                userId={user.id}
+              />
+              <Divider />
+            </div>
+          ))}
+        </LoadMoreButton>
       </div>
     </div>
   );
