@@ -1,9 +1,10 @@
-import { Card, CardHeader, CardBody } from '@nextui-org/react';
+import { Card, CardBody, CardFooter, CardHeader } from '@nextui-org/react';
+import HeartButton from '../../layout/HeartButton';
 import UserAvatar from '../../users/components/UserAvatar';
 
 export default function Comment({ comment, userId }) {
   return (
-    <Card className="max-w-2xl border">
+    <Card className="max-w-2xl border bg-gray-600 bg-opacity-25 backdrop-blur-sm backdrop-filter">
       <CardHeader className="flex gap-3">
         <UserAvatar userId={userId} />
       </CardHeader>
@@ -12,14 +13,9 @@ export default function Comment({ comment, userId }) {
         <p>{comment}</p>
       </CardBody>
 
-      {/* <CardFooter>
-        <Link
-          isExternal
-          showAnchorIcon
-          href="https://github.com/nextui-org/nextui">
-          Visit source code on GitHub.
-        </Link>
-      </CardFooter> */}
+      <CardFooter>
+        <HeartButton />
+      </CardFooter>
     </Card>
   );
 }

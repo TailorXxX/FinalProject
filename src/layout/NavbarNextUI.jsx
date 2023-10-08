@@ -16,6 +16,7 @@ import {
   NavbarBrand,
   NavbarContent,
   NavbarItem,
+  Tooltip,
 } from '@nextui-org/react';
 import { Link } from 'react-router-dom';
 
@@ -52,29 +53,50 @@ export default function NavbarNextUI() {
           <div className="flex justify-center gap-4">
             <div className="">
               <Link to={'/'}>
-                <i className="bi bi-house nav-icons"></i>
+                <Tooltip
+                  content="Feed Page"
+                  placement="bottom"
+                  color="primary"
+                  size="sm"
+                  className="bg-gray-600 bg-opacity-25 backdrop-blur-sm backdrop-filter">
+                  <i className="bi bi-house nav-icons"></i>
+                </Tooltip>
               </Link>
             </div>
             <div>
               <Link to={'friends'}>
-                <i className="bi bi-people nav-icons"></i>
+                <Tooltip
+                  content="Friends"
+                  placement="bottom"
+                  color="primary"
+                  size="sm"
+                  className="bg-gray-600 bg-opacity-25 backdrop-blur-sm backdrop-filter">
+                  <i className="bi bi-people nav-icons"></i>
+                </Tooltip>
               </Link>
             </div>
-            <div className="games-dropdown">
-              <Dropdown>
-                <DropdownTrigger>
-                  <i className="bi bi-joystick nav-icons"></i>
-                </DropdownTrigger>
-                <DropdownMenu>
-                  <DropdownItem key="chess">
-                    <Link to="/chess">Chess</Link>
-                  </DropdownItem>
-                  <DropdownItem key="tictactoe">
-                    <Link to="/tictactoegame">TicTacToe Game</Link>
-                  </DropdownItem>
-                </DropdownMenu>
-              </Dropdown>
-            </div>
+            <Tooltip
+              content="Games"
+              placement="right"
+              color="primary"
+              size="sm"
+              className="bg-gray-600 bg-opacity-25 backdrop-blur-sm backdrop-filter">
+              <div className="games-dropdown">
+                <Dropdown>
+                  <DropdownTrigger>
+                    <i className="bi bi-joystick nav-icons"></i>
+                  </DropdownTrigger>
+                  <DropdownMenu className="bg-transparent">
+                    <DropdownItem key="chess">
+                      <Link to="/chess">Chess</Link>
+                    </DropdownItem>
+                    <DropdownItem key="tictactoe">
+                      <Link to="/tictactoegame">TicTacToe Game</Link>
+                    </DropdownItem>
+                  </DropdownMenu>
+                </Dropdown>
+              </div>
+            </Tooltip>
           </div>
         </NavbarContent>
       )}

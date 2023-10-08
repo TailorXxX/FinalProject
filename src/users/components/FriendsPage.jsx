@@ -9,7 +9,7 @@ export default function FriendsPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [index, setIndex] = useState(7);
+  const [index, setIndex] = useState(8);
   const initialUsers = filteredUsers.slice(0, index);
   const [showLoadMoreButton, setShowLoadMoreButton] = useState(true);
 
@@ -54,7 +54,7 @@ export default function FriendsPage() {
   }
 
   return (
-    <div>
+    <div className=" m-4">
       <div>
         <Input
           color="primary"

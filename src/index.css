@@ -65,8 +65,8 @@ body {
   display: flex;
 }
 .square {
-  color: #ff233f;
-  border: 2px solid #ff233f;
+  color: rgb(0, 221, 255);
+  border: 1px dotted #ffffff;
   height: 40px;
   width: 40px;
   display: flex;
