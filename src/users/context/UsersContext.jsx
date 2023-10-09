@@ -1,63 +1,54 @@
 import { useUser } from '@clerk/clerk-react';
 import { createContext, useContext, useEffect, useState } from 'react';
-import { getUsersWithCount } from '../user.service';
+import { getAllUsers, toggleUserFollowState } from '../user.service';
 
 const UsersListContext = createContext();
 const SetIsFollowedContext = createContext();
 const UserByIdContext = createContext();
 
-export const useUsers = () => useContext(UsersListContext);
-export const useFollowButton = () => useContext(SetIsFollowedContext);
-export const useUserById = () => useContext(UserByIdContext);
+export const useUsers = () => useContext( UsersListContext );
+export const useFollowButton = () => useContext( SetIsFollowedContext );
+export const useUserById = () => useContext( UserByIdContext );
 
 export const UsersProvider = ({ children }) => {
-  const [users, setUsers] = useState([]);
-  const { user } = useUser();
+    const [ users, setUsers ] = useState( [] );
+    const { user } = useUser();
 
-  useEffect(() => {
-    fetchUsers();
-  }, []);
+    useEffect( () => {
+        fetchUsers();
+    }, [] );
 
-  async function fetchUsers() {
-    const users = await getUsersWithCount(100);
-    const myUser = {
-      image: user?.imageUrl,
-      id: user?.id,
-      firstName: user?.firstName,
-      lastName: user?.lastName,
-    };
-    const allUsers = [...users, myUser];
+    async function fetchUsers() {
+        const users = await getAllUsers();
+        const myUser = {
+            image    : user?.imageUrl,
+            id       : user?.id,
+            firstName: user?.firstName,
+            lastName : user?.lastName,
+        };
+        const allUsers = [ ...users, myUser ];
 
-    setUsers(allUsers);
-  }
+        setUsers( allUsers );
+    }
 
-  function fetchUserById(id) {
-    return users.filter(user => user.id === id)[0];
-  }
+    function fetchUserById(id) {
+        return users.filter( user => user.id===id )[0];
+    }
 
-  function toggleFollowState(userToUpdate) {
-    let updatedUser = userToUpdate;
+    async function toggleFollowState(userToUpdate) {
+        const updatedUser = await toggleUserFollowState( userToUpdate.id )
+        await fetchUsers()
 
-    const updatedUsers = users.map(userFromList => {
-      if (userFromList.id == userToUpdate.id) {
-        userFromList.isFollowed = !userFromList.isFollowed;
-        updatedUser = userFromList;
-      }
+        return updatedUser;
+    }
 
-      return { ...userFromList };
-    });
-
-    setUsers(updatedUsers);
-    return updatedUser;
-  }
-
-  return (
-    <UsersListContext.Provider value={users}>
-      <SetIsFollowedContext.Provider value={toggleFollowState}>
-        <UserByIdContext.Provider value={fetchUserById}>
-          {children}
-        </UserByIdContext.Provider>
-      </SetIsFollowedContext.Provider>
-    </UsersListContext.Provider>
-  );
+    return (
+            <UsersListContext.Provider value={ users }>
+                <SetIsFollowedContext.Provider value={ toggleFollowState }>
+                    <UserByIdContext.Provider value={ fetchUserById }>
+                        { children }
+                    </UserByIdContext.Provider>
+                </SetIsFollowedContext.Provider>
+            </UsersListContext.Provider>
+    );
 };
