@@ -13,10 +13,9 @@ function UserProfilePage() {
   }, []);
 
   return (
-    <>
-      <div>{user?.id} asdasdasd</div>
+    <div className="profile-page bg-gray-600 bg-opacity-25 backdrop-blur-sm backdrop-filter">
       <div>{user?.firstName}</div>
-    </>
+    </div>
   );
 }
 

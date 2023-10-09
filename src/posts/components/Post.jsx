@@ -8,6 +8,7 @@ import {
 
 import { useState } from 'react';
 import HeartButton from '../../layout/HeartButton';
+import RandomDate from '../../layout/RandomDate';
 import UserAvatar from '../../users/components/UserAvatar';
 import { useFollowButton, useUserById } from '../../users/context/UsersContext';
 import PostsComments from './PostsComments';
@@ -28,7 +29,7 @@ export default function Post({ post }) {
         key={post.id}
         className="max-w my-2 bg-gray-600 bg-opacity-25 backdrop-blur-sm backdrop-filter">
         <CardHeader className="justify-between">
-          <div className="flex">
+          <div className="flex-col">
             <UserAvatar userId={post.userId} />
           </div>
           <Button
@@ -51,25 +52,29 @@ export default function Post({ post }) {
             {post.tags.map(tag => `#${tag} `)}
           </span>
         </CardBody>
-        <CardFooter className="gap-3 ">
+        <CardFooter className="flex justify-between gap-3 ">
           <div className="flex gap-1">
-            <HeartButton />
+            <div className="flex items-center justify-center gap-1">
+              <HeartButton />
+            </div>
+            <div className="flex items-center justify-center gap-1 ">
+              <span className="font-semibold text-default text-xs">
+                {Math.floor(Math.random() * 100)}.
+                {Math.floor(Math.random() * 10)}K
+              </span>
+              <span className="font-semibold text-default text-xs">Follow</span>
+            </div>
+            <div className="flex items-center justify-center gap-1">
+              <PostsComments
+                postId={post.id}
+                postTitle={post.title}
+                postUser={user}
+              />
+            </div>
           </div>
-          <div className="flex gap-1 ">
-            <span className="font-semibold text-default text-small">
-              {Math.floor(Math.random() * 100)}.{Math.floor(Math.random() * 10)}
-              K
-            </span>
-            <span className="font-semibold text-default text-small">
-              Follow
-            </span>
-          </div>
-          <div className="flex gap-1">
-            <PostsComments
-              postId={post.id}
-              postTitle={post.title}
-              postUser={user}
-            />
+
+          <div className="flex">
+            <RandomDate />
           </div>
         </CardFooter>
       </Card>

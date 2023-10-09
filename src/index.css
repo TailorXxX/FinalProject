@@ -7,6 +7,10 @@ body {
   height: 100vh;
 }
 
+.profile-page {
+  max-height: 100vh;
+}
+
 .bi.nav-icons {
   font-size: 20px !important;
   margin-left: 20px;

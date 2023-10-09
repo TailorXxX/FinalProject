@@ -21,8 +21,8 @@ export default function HeartButton() {
       <Button
         className={
           !isLiked
-            ? 'bg-transparent text-foreground border-default-200'
-            : 'shadow'
+            ? 'bg-transparent text-foreground font-bold text-xs border-default-200'
+            : 'shadow text-foreground font-bold'
         }
         size="sm"
         color="primary"

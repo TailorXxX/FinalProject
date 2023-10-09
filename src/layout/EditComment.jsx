@@ -1,6 +1,5 @@
 import {
   Button,
-  Divider,
   Input,
   Modal,
   ModalBody,
@@ -9,45 +8,21 @@ import {
   ModalHeader,
   useDisclosure,
 } from '@nextui-org/react';
+import { useState } from 'react';
 
-import { useUser } from '@clerk/clerk-react';
-import { useEffect, useState } from 'react';
-import UserAvatar from '../../users/components/UserAvatar';
-import { getComments } from '../posts.service';
-import Comment from './Comment';
-
-export default function PostsComments({ postId, postTitle, postUser }) {
+export default function EditComment() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const [comments, setComments] = useState([]);
-  const [comment, setComment] = useState(null);
-  const { user } = useUser();
+  // eslint-disable-next-line no-unused-vars
+  const [newComment, setNewComment] = useState(null);
 
   const onChangeComment = e => {
-    const comment = e.target.value;
-    setComment(comment);
+    const newComment = e.target.value;
+    setNewComment(newComment);
   };
-
-  useEffect(() => {
-    fetchComments();
-  }, [postId]);
-
-  async function fetchComments() {
-    const fetchedComments = await getComments(postId);
-    setComments(fetchedComments);
-  }
 
   function addComment(e) {
     e.preventDefault();
-
-    const detailedComment = {
-      id: comments.length + 1,
-      body: comment,
-      user: { id: user.id, username: user.fullName },
-    };
-    setComments([...comments, detailedComment]);
-    e.target.reset();
   }
-
   return (
     <>
       <Button
@@ -67,22 +42,9 @@ export default function PostsComments({ postId, postTitle, postUser }) {
           {
             <>
               <ModalHeader className="flex flex-col gap-1">
-                <UserAvatar userId={postUser?.id} />
-
-                {postTitle}
+                Edit your comment
               </ModalHeader>
-              <ModalBody>
-                <Divider />
-                <p>Comments:</p>
-                {comments.map(comment => (
-                  <Comment
-                    key={comment.id}
-                    comment={comment.body}
-                    userId={comment.user.id}
-                    myUserId={user.id}
-                  />
-                ))}
-              </ModalBody>
+              <ModalBody>{newComment}</ModalBody>
               <ModalFooter>
                 <form
                   className="flex w-max grow"
@@ -96,7 +58,7 @@ export default function PostsComments({ postId, postTitle, postUser }) {
                     label="Comment"
                     defaultValue=""
                     onChange={onChangeComment}
-                    placeholder="Type your comment"
+                    placeholder="Type your new comment"
                   />
                   <Button
                     className="flex h-11 m-2 sticky"
