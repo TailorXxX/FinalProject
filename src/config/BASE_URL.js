@@ -1,6 +1,5 @@
-const dummyJsonUrl = 'https://dummyjson.com';
+const serverUrl = 'http://localhost:3000';
 
-export const posts = `${dummyJsonUrl}/posts`;
-export const users = `${dummyJsonUrl}/users`;
-export const allComments = `${dummyJsonUrl}/comments`;
-export const commentsByPostId = `${dummyJsonUrl}/comments/post/`;
+export const posts = `${ serverUrl }/posts`;
+export const users = `${ serverUrl }/users`;
+export const comments = `${ serverUrl }/comments`;
