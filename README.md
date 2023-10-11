@@ -8,12 +8,13 @@ This project was realized using React + Vite, NextUI, Sanity.io, Clerk, and othe
 
 ### Prerequisites
 
-- Node.js installed on your system
+- Node.js, yarn and json-server installed on your system
 
 ### Installation
 
-1. Install the dependencies: `npm install`
+1. Install the dependencies: `yarn`
 2. Create an .env file based on .env.example
+3. Install json-server globally: `yarn global add json-server`
 
 ### Development Server
 
