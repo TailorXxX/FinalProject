@@ -1,7 +1,11 @@
 import { Chessboard } from 'react-chessboard';
 
 function Chess() {
-  return <Chessboard id="BasicBoard" />;
+  return (
+    <div>
+      <Chessboard />
+    </div>
+  );
 }
 
 export default Chess;

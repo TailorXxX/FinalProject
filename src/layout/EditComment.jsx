@@ -2,27 +2,26 @@ import {
   Button,
   Input,
   Modal,
-  ModalBody,
   ModalContent,
   ModalFooter,
   ModalHeader,
   useDisclosure,
 } from '@nextui-org/react';
-import { useState } from 'react';
+import { useRef } from 'react';
 
-export default function EditComment() {
+export default function EditComment({ comment, editMyComment }) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  // eslint-disable-next-line no-unused-vars
-  const [newComment, setNewComment] = useState(null);
 
-  const onChangeComment = e => {
-    const newComment = e.target.value;
-    setNewComment(newComment);
-  };
+  const commentBodyRef = useRef();
 
-  function addComment(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
+
+    const commentToUpdate = { ...comment, body: commentBodyRef.current?.value };
+
+    await editMyComment(commentToUpdate);
   }
+
   return (
     <>
       <Button
@@ -31,24 +30,24 @@ export default function EditComment() {
         aria-label="Comment"
         onPress={onOpen}
         color="hsl(var(--nextui-default-400) / var(--nextui-default-400-opacity, var(--tw-text-opacity)))">
-        <i className="bi bi-chat"></i>
+        <i className="bi bi-pencil-square"></i>
       </Button>
 
       <Modal
-        className="h-3/4 max-w-2xl overflow-y-scroll"
+        className="h-1/4 max-w-xl place-self-start border overflow-y-hidden"
         isOpen={isOpen}
         onOpenChange={onOpenChange}>
-        <ModalContent className="bg-inherit bg-opacity-75 backdrop-blur-lg backdrop-filter">
+        <ModalContent className="bg-gray-900 bg-opacity-50 backdrop-blur-lg backdrop-filter">
           {
             <>
               <ModalHeader className="flex flex-col gap-1">
                 Edit your comment
               </ModalHeader>
-              <ModalBody>{newComment}</ModalBody>
+
               <ModalFooter>
                 <form
                   className="flex w-max grow"
-                  onSubmit={addComment}
+                  onSubmit={handleSubmit}
                   method="post">
                   <Input
                     className="h-11 m-2 sticky"
@@ -56,8 +55,8 @@ export default function EditComment() {
                     type="text"
                     name="comment"
                     label="Comment"
-                    defaultValue=""
-                    onChange={onChangeComment}
+                    ref={commentBodyRef}
+                    defaultValue={comment.body}
                     placeholder="Type your new comment"
                   />
                   <Button

@@ -3,16 +3,17 @@ import { dark } from '@clerk/themes';
 
 import { Route, Routes } from 'react-router-dom';
 import ChatGPT from './chat-gpt/ChatGPT';
-import Chessboard from './games/chess/Chessboard';
 import ThemeProvider from './games/tictactoe/ThemeContext';
 import TicTacToeGame from './games/tictactoe/TicTacToeGame';
 import NavbarNextUI from './layout/NavbarNextUI';
 import FeedPage from './posts/components/FeedPage';
 import { UsersProvider } from './users/context/UsersContext';
 
+import Chess from './games/chess/Chess';
 import StarfieldBackground from './layout/StarfieldBackground';
 import FriendsPage from './users/components/FriendsPage';
 import UserProfilePage from './users/components/UserProfilePage';
+import { useEffect } from 'react';
 
 const clerkPubKey = import.meta.env.VITE_REACT_APP_CLERK_PUBLISHABLE_KEY;
 
@@ -50,13 +51,13 @@ export default function App() {
                     path="/friends"
                     element={<FriendsPage />}></Route>
                   <Route
-                    path="/chess"
-                    element={<Chessboard />}></Route>
+                    path="/chess-game"
+                    element={<Chess />}></Route>
                   <Route
                     path="/chat"
                     element={<ChatGPT />}></Route>
                   <Route
-                    path="/tictactoegame"
+                    path="/tic-tac-toe-game"
                     element={
                       <ThemeProvider>
                         <TicTacToeGame />

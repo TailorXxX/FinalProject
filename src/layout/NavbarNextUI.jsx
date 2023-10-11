@@ -86,12 +86,18 @@ export default function NavbarNextUI() {
                   <DropdownTrigger>
                     <i className="bi bi-joystick nav-icons"></i>
                   </DropdownTrigger>
-                  <DropdownMenu className="bg-transparent">
-                    <DropdownItem key="chess">
-                      <Link to="/chess">Chess</Link>
+                  <DropdownMenu
+                    className="bg-transparent"
+                    aria-label="Static Actions">
+                    <DropdownItem key="tic-tac-toe-link">
+                      <Link to="/tic-tac-toe-game">
+                        <div className="w-full">TicTacToe Game</div>
+                      </Link>
                     </DropdownItem>
-                    <DropdownItem key="tictactoe">
-                      <Link to="/tictactoegame">TicTacToe Game</Link>
+                    <DropdownItem key="chess-link">
+                      <Link to="/chess-game">
+                        <div className="w-full">Chess</div>
+                      </Link>
                     </DropdownItem>
                   </DropdownMenu>
                 </Dropdown>
