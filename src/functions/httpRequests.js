@@ -104,9 +104,9 @@ export async function performDeleteRequest(url) {
       throw new Error(`HTTP error! status: ${res.status}`);
     }
 
-    return await res.json();
+    return true;
   } catch (error) {
     console.error(`There was a problem fetching the data: ${error.message}`);
-    return null;
+    return false;
   }
 }

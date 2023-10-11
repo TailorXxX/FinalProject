@@ -13,7 +13,12 @@ import {
 import { useUser } from '@clerk/clerk-react';
 import { useState } from 'react';
 import UserAvatar from '../../users/components/UserAvatar';
-import { addCommentToPost, editComment, getComments } from '../posts.service';
+import {
+  addCommentToPost,
+  deleteComment,
+  editComment,
+  getComments,
+} from '../posts.service';
 import Comment from './Comment';
 
 export default function PostsComments({ postId, postTitle, postUser }) {
@@ -74,6 +79,18 @@ export default function PostsComments({ postId, postTitle, postUser }) {
   //   setComments(updatedList);
   // }
 
+  function deleteCommentFromList(deletedComment) {
+    const commentsWithoutDeletedComment = comments.filter(
+      comment => deletedComment.id != comment.id
+    );
+    setComments(commentsWithoutDeletedComment);
+  }
+
+  async function deleteMyComment(deletedComment) {
+    const isDeleted = await deleteComment(deletedComment);
+    isDeleted && deleteCommentFromList(deletedComment);
+  }
+
   async function editMyComment(comment) {
     const myComment = await editComment(comment);
 
@@ -112,6 +129,7 @@ export default function PostsComments({ postId, postTitle, postUser }) {
                     comment={comment}
                     myUserId={user.id}
                     editMyComment={editMyComment}
+                    deleteMyComment={deleteMyComment}
                   />
                 ))}
               </ModalBody>
