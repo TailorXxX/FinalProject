@@ -1,19 +1,15 @@
 import { ClerkProvider, SignedIn, SignedOut } from '@clerk/clerk-react';
 import { dark } from '@clerk/themes';
-
 import { Route, Routes } from 'react-router-dom';
 import ChatGPT from './chat-gpt/ChatGPT';
 import ThemeProvider from './games/tictactoe/ThemeContext';
 import TicTacToeGame from './games/tictactoe/TicTacToeGame';
+import LoggedOffIntro from './layout/LoggedOffIntro';
 import NavbarNextUI from './layout/NavbarNextUI';
 import FeedPage from './posts/components/FeedPage';
-import { UsersProvider } from './users/context/UsersContext';
-
-import Chess from './games/chess/Chess';
-import StarfieldBackground from './layout/StarfieldBackground';
 import FriendsPage from './users/components/FriendsPage';
 import UserProfilePage from './users/components/UserProfilePage';
-import { useEffect } from 'react';
+import { UsersProvider } from './users/context/UsersContext';
 
 const clerkPubKey = import.meta.env.VITE_REACT_APP_CLERK_PUBLISHABLE_KEY;
 
@@ -24,13 +20,16 @@ if (!import.meta.env.VITE_REACT_APP_CLERK_PUBLISHABLE_KEY) {
 export default function App() {
   return (
     <>
-      <StarfieldBackground />
       <ClerkProvider
         appearance={{
           baseTheme: dark,
         }}
         publishableKey={clerkPubKey}>
         {/* <Cursor /> */}
+
+        <SignedOut>
+          <LoggedOffIntro />
+        </SignedOut>
 
         <NavbarNextUI />
         <SignedIn>
@@ -51,9 +50,6 @@ export default function App() {
                     path="/friends"
                     element={<FriendsPage />}></Route>
                   <Route
-                    path="/chess-game"
-                    element={<Chess />}></Route>
-                  <Route
                     path="/chat"
                     element={<ChatGPT />}></Route>
                   <Route
@@ -69,10 +65,6 @@ export default function App() {
             </div>
           </UsersProvider>
         </SignedIn>
-
-        <SignedOut>
-          <h3>Please Sign In!</h3>
-        </SignedOut>
       </ClerkProvider>
     </>
   );

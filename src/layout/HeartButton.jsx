@@ -1,9 +1,11 @@
+import { useUser } from '@clerk/clerk-react';
 import { Button } from '@nextui-org/react';
 import { useEffect, useState } from 'react';
 
-export default function HeartButton() {
+export default function HeartButton({ userFromListId }) {
   const [isLiked, setIsLiked] = useState(false);
   const [likesNumber, setLikesNumber] = useState(0);
+  const { user } = useUser();
 
   useEffect(() => {
     setLikesNumber(Math.floor(Math.random() * 100));
@@ -21,8 +23,8 @@ export default function HeartButton() {
       <Button
         className={
           !isLiked
-            ? 'bg-transparent text-foreground font-bold text-xs border-default-200'
-            : 'shadow text-foreground font-bold'
+            ? 'bg-transparent text-foreground font-semibold text-sm border border-transparent hover:border-white'
+            : 'text-foreground font-semibold text-sm border border-transparent'
         }
         size="sm"
         color="primary"
@@ -35,7 +37,9 @@ export default function HeartButton() {
             <i className="bi bi-heart-fill "></i>
           )
         }>
-        {likesNumber} Likes
+        {user.id !== userFromListId
+          ? `${likesNumber} Likes`
+          : `${Math.abs(likesNumber - likesNumber)} Likes`}
       </Button>
     </div>
   );

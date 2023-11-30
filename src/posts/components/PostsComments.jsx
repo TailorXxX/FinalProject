@@ -7,11 +7,13 @@ import {
   ModalContent,
   ModalFooter,
   ModalHeader,
+  ScrollShadow,
   useDisclosure,
 } from '@nextui-org/react';
 
 import { useUser } from '@clerk/clerk-react';
 import { useState } from 'react';
+import FollowButton from '../../layout/FollowButton';
 import UserAvatar from '../../users/components/UserAvatar';
 import {
   addCommentToPost,
@@ -21,7 +23,12 @@ import {
 } from '../posts.service';
 import Comment from './Comment';
 
-export default function PostsComments({ postId, postTitle, postUser }) {
+export default function PostsComments({
+  postId,
+  postTitle,
+  postBody,
+  postUser,
+}) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [comments, setComments] = useState([]);
   const [comment, setComment] = useState(null);
@@ -37,10 +44,6 @@ export default function PostsComments({ postId, postTitle, postUser }) {
     setComments(fetchedComments);
   }
 
-  // Tu incarcai toate comentariile tuturor postarilor odata cu postarile,
-  // Ceea ce ducea la un load time foarte mare.
-  // Ti-am mutat incarcarea comentariilor unei postari astfel incat sa se incarce
-  // dupa ce dai click pe butonul de comments si se deschide modalul
   async function handleOpen() {
     await fetchComments();
     onOpen();
@@ -70,15 +73,6 @@ export default function PostsComments({ postId, postTitle, postUser }) {
     return updatedComments;
   }
 
-  // Alternativa la functia de update by id in lista
-  // function updateCommentInList(updatedComment) {
-  //   const updatedList = comments.map(comment => {
-  //     comment.id == updatedComment.id ? updatedComment : comment;
-  //   });
-
-  //   setComments(updatedList);
-  // }
-
   function deleteCommentFromList(deletedComment) {
     const commentsWithoutDeletedComment = comments.filter(
       comment => deletedComment.id != comment.id
@@ -100,11 +94,11 @@ export default function PostsComments({ postId, postTitle, postUser }) {
   return (
     <>
       <Button
-        className="bg-transparent"
+        className="bg-transparent border border-transparent hover:border-white"
         isIconOnly
         aria-label="Comment"
         onPress={handleOpen}
-        color="hsl(var(--nextui-default-400) / var(--nextui-default-400-opacity, var(--tw-text-opacity)))">
+        color="">
         <i className="bi bi-chat"></i>
       </Button>
 
@@ -116,9 +110,18 @@ export default function PostsComments({ postId, postTitle, postUser }) {
           {
             <>
               <ModalHeader className="flex flex-col gap-1">
-                <UserAvatar userId={postUser?.id} />
+                <div className="flex justify-between items-center">
+                  <UserAvatar userId={postUser?.id} />
+                  <FollowButton userFromList={postUser} />
+                </div>
 
-                {postTitle}
+                <div className="m-3">{postTitle}</div>
+
+                <ScrollShadow
+                  hideScrollBar
+                  className="w-auto h-20 text-medium font-normal">
+                  {postBody}
+                </ScrollShadow>
               </ModalHeader>
               <ModalBody>
                 <Divider />
@@ -135,22 +138,22 @@ export default function PostsComments({ postId, postTitle, postUser }) {
               </ModalBody>
               <ModalFooter>
                 <form
-                  className="flex w-max grow"
+                  className="flex w-max grow border rounded-xl"
                   onSubmit={addComment}
                   method="post">
                   <Input
-                    className="h-11 m-2 sticky"
-                    color="primary"
+                    className="h-11 m-2 sticky text-foreground"
+                    color="secondary"
                     type="text"
                     name="comment"
                     label="Comment"
                     defaultValue=""
                     onChange={onChangeComment}
-                    placeholder="Type your comment"
+                    placeholder="Type your comment..."
                   />
                   <Button
-                    className="flex h-11 m-2 sticky"
-                    color="primary"
+                    className="flex h-11 m-2 sticky border border-transparent hover:border-white hover:bg-primary-100"
+                    color=""
                     type="submit">
                     <i className="bi bi-send"></i>
                     Send

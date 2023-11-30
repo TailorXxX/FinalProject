@@ -14,7 +14,6 @@ export default function FriendsPage() {
   const [showLoadMoreButton, setShowLoadMoreButton] = useState(true);
 
   useEffect(() => {
-    // Simulating a delay (e.g., 2 seconds) to see the spinner
     setTimeout(() => {
       setIsLoading(false);
     }, 1);

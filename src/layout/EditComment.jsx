@@ -25,11 +25,11 @@ export default function EditComment({ comment, editMyComment }) {
   return (
     <>
       <Button
-        className="bg-transparent"
+        className="bg-transparent hover:border border-green-700 hover:text-green-700"
         isIconOnly
         aria-label="Comment"
         onPress={onOpen}
-        color="hsl(var(--nextui-default-400) / var(--nextui-default-400-opacity, var(--tw-text-opacity)))">
+        color="">
         <i className="bi bi-pencil-square"></i>
       </Button>
 

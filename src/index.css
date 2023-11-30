@@ -4,7 +4,106 @@
 
 body {
   margin: 0;
-  height: 100vh;
+  min-height: 100vh;
+  background-image: url(../assets/background.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+
+#leftIntro,
+#rightIntro {
+  /* z-index: 150; */
+}
+
+.slide-left {
+  animation: slideLeft 1s ease-in-out forwards;
+}
+
+.slide-right {
+  animation: slideRight 1s ease-in-out forwards;
+}
+
+.slide-right-circle {
+  animation: slideRightCircle 1s ease-in-out forwards;
+}
+
+.title {
+  z-index: 990;
+  color: 000;
+  cursor: pointer;
+}
+
+.w-50 {
+  width: 50%;
+}
+.loader-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.loader {
+  /* position: absolute; */
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  z-index: 200;
+  cursor: pointer;
+  background: linear-gradient(#f07e6e, #84cdfa, #5ad1cd);
+  animation: animate 1.2s linear infinite;
+}
+
+@keyframes animate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loader span {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: linear-gradient(#84cdfa, #fdd5f9, #1f5759);
+}
+
+.loader span:nth-child(1) {
+  filter: blur(5px);
+}
+
+.loader span:nth-child(2) {
+  filter: blur(10px);
+}
+
+.loader span:nth-child(3) {
+  filter: blur(25px);
+}
+
+.loader span:nth-child(4) {
+  filter: blur(50px);
+}
+
+.loader:after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  background: ;
+  border: solid white 10px;
+  border-radius: 50%;
+}
+
+.navbar-logo {
+  width: 200px;
 }
 
 .profile-page {
@@ -13,7 +112,7 @@ body {
 
 .bi.nav-icons {
   font-size: 20px !important;
-  margin-left: 20px;
+  margin: 0 10px;
 }
 
 .games-dropdown {
@@ -26,33 +125,6 @@ body {
   border: 1px solid white;
   border-radius: 50%;
   position: absolute;
-}
-
-.hover-container {
-  position: relative;
-  display: inline-block;
-}
-
-.hover-text {
-  opacity: 0;
-  visibility: hidden;
-  position: absolute;
-  left: 70%; /* start from a position closer to the image */
-  top: 50%;
-  transform: translateY(-50%);
-  background: transparent;
-  padding: 5px;
-  border-radius: 3px;
-  white-space: nowrap;
-  transition: opacity 0.3s, left 0.3s, visibility 0.3s;
-  font-size: large;
-  color: rgb(0, 221, 255);
-}
-
-.hover-container:hover .hover-text {
-  opacity: 1;
-  visibility: visible;
-  left: 100%;
 }
 
 .cl-userButtonPopoverCard .cl-card .cl-userButton-popover {
@@ -87,4 +159,38 @@ body {
 .board-style {
   border-radius: 5px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes slideLeft {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-100%);
+    opacity: 0.5;
+  }
+}
+
+@keyframes slideRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0.5;
+  }
+}
+
+@keyframes slideRightCircle {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(50%);
+    opacity: 0;
+    pointer-events: none;
+  }
 }

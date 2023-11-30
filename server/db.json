@@ -2,7 +2,7 @@
   "posts": [
     {
       "id": 1,
-      "title": "New title",
+      "title": "What a lovely mother",
       "body": "His mother had always taught him not to ever think of himself as better than others. He'd tried to live by this motto. He never looked down on those who were less fortunate or who had less money than him. But the stupidity of the group of people he was talking to made him change his mind.",
       "userId": 9,
       "tags": [
@@ -414,7 +414,7 @@
       "ein": "20-9487066",
       "ssn": "661-64-2976",
       "userAgent": "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/534.24 (KHTML, like Gecko) Chrome/12.0.702.0 Safari/534.24",
-      "isFollowed": false
+      "isFollowed": true
     },
     {
       "id": 2,
@@ -662,7 +662,7 @@
       "ein": "18-7178563",
       "ssn": "667-98-5357",
       "userAgent": "Mozilla/5.0 (Windows NT 6.0) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/13.0.782.1 Safari/535.1",
-      "isFollowed": false
+      "isFollowed": true
     },
     {
       "id": 6,
@@ -1095,7 +1095,7 @@
       "ein": "14-1242349",
       "ssn": "116-51-6131",
       "userAgent": "Mozilla/5.0 (X11; CrOS i686 4319.74.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.57 Safari/537.36",
-      "isFollowed": false
+      "isFollowed": true
     },
     {
       "id": 13,
@@ -1157,7 +1157,7 @@
       "ein": "94-0648182",
       "ssn": "217-05-3082",
       "userAgent": "Mozilla/5.0 (Windows; U; Windows NT 5.1; ru-RU) AppleWebKit/533.19.4 (KHTML, like Gecko) Version/5.0.3 Safari/533.19.4",
-      "isFollowed": false
+      "isFollowed": true
     },
     {
       "id": 14,
@@ -1281,7 +1281,7 @@
       "ein": "62-0561095",
       "ssn": "855-43-8639",
       "userAgent": "Mozilla/5.0 (X11; Linux i686) AppleWebKit/534.24 (KHTML, like Gecko) Chrome/11.0.696.14 Safari/534.24",
-      "isFollowed": false
+      "isFollowed": true
     },
     {
       "id": 16,
@@ -2335,7 +2335,7 @@
       "ein": "59-2050847",
       "ssn": "201-38-9441",
       "userAgent": "Mozilla/5.0 (X11; CrOS i686 12.433.216) AppleWebKit/534.30 (KHTML, like Gecko) Chrome/12.0.742.105 Safari/534.30",
-      "isFollowed": false
+      "isFollowed": true
     },
     {
       "id": 33,
@@ -2645,7 +2645,7 @@
       "ein": "18-0869025",
       "ssn": "623-85-1332",
       "userAgent": "Mozilla/5.0 (X11; U; Linux x86_64; en-US) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/13.0.782.20 Safari/535.1",
-      "isFollowed": true
+      "isFollowed": false
     },
     {
       "id": 38,
@@ -2893,7 +2893,7 @@
       "ein": "58-9897099",
       "ssn": "166-50-4378",
       "userAgent": "Mozilla/5.0 (X11; Linux i686) AppleWebKit/534.24 (KHTML, like Gecko) Ubuntu/10.10 Chromium/12.0.702.0 Chrome/12.0.702.0 Safari/534.24",
-      "isFollowed": false
+      "isFollowed": true
     },
     {
       "id": 42,
@@ -2955,7 +2955,7 @@
       "ein": "05-7267265",
       "ssn": "539-88-5745",
       "userAgent": "Mozilla/5.0 (Windows NT 6.0) AppleWebKit/534.24 (KHTML, like Gecko) Chrome/11.0.696.3 Safari/534.24",
-      "isFollowed": true
+      "isFollowed": false
     },
     {
       "id": 43,
@@ -3264,7 +3264,7 @@
       "ein": "75-0166236",
       "ssn": "325-43-3345",
       "userAgent": "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/534.24 (KHTML, like Gecko) Chrome/11.0.694.0 Safari/534.24",
-      "isFollowed": false
+      "isFollowed": true
     },
     {
       "id": 48,
@@ -7534,13 +7534,22 @@
       }
     },
     {
-      "body": "cxccv",
+      "body": "My comment",
       "user": {
         "id": "user_2UlMtTJZu1N8O1RUfLvJAbyGUVh",
         "username": "Costin Croitoru"
       },
-      "postId": 1,
-      "id": 340
+      "postId": 26,
+      "id": 341
+    },
+    {
+      "body": "My comment edited",
+      "user": {
+        "id": "user_2UlMtTJZu1N8O1RUfLvJAbyGUVh",
+        "username": "Costin Croitoru"
+      },
+      "postId": 3,
+      "id": 342
     }
   ]
 }

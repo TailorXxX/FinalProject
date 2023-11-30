@@ -13,6 +13,7 @@ function StarfieldBackground() {
         zIndex: -1,
         backgroundImage: `url(${background})`,
       }}
+      numParticles={300}
     />
   );
 }

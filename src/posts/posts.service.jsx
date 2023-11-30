@@ -6,12 +6,24 @@ import {
   performPostRequest,
 } from '../functions/httpRequests.js';
 
-export async function getComments(postId) {
-  return await performListGetRequest(`${comments}?postId=${postId}`);
-}
-
 export async function getPosts() {
   return await performListGetRequest(posts);
+}
+
+export async function addPost(post) {
+  return await performPostRequest(posts, post);
+}
+
+export async function editPost(post) {
+  return await performPatchRequest(posts, post);
+}
+
+export async function deletePost(post) {
+  return await performDeleteRequest(`${posts}/${post.id}`);
+}
+
+export async function getComments(postId) {
+  return await performListGetRequest(`${comments}?postId=${postId}`);
 }
 
 export async function addCommentToPost(comment) {
@@ -19,10 +31,6 @@ export async function addCommentToPost(comment) {
 }
 export async function editComment(comment) {
   return await performPatchRequest(`${comments}/${comment.id}`, comment);
-}
-
-export async function editPost(post) {
-  return await performPatchRequest(posts, post);
 }
 
 export async function deleteComment(comment) {

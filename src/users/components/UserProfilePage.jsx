@@ -10,10 +10,11 @@ function UserProfilePage() {
 
   useEffect(() => {
     setUser(getUserById(Number(userId)));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <div className="profile-page bg-gray-600 bg-opacity-25 backdrop-blur-sm backdrop-filter">
+    <div className="profile-page bg-gray-900 bg-opacity-25 backdrop-blur-sm backdrop-filter">
       <div>{user?.firstName}</div>
     </div>
   );

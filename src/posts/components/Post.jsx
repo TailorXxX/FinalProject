@@ -1,87 +1,84 @@
-import { Button, Card, CardBody, CardFooter, CardHeader, } from '@nextui-org/react';
+import {
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  Divider,
+} from '@nextui-org/react';
 
+import { useUser } from '@clerk/clerk-react';
 import { useEffect, useState } from 'react';
+import FollowButton from '../../layout/FollowButton';
 import HeartButton from '../../layout/HeartButton';
-import RandomDate from '../../layout/RandomDate';
 import UserAvatar from '../../users/components/UserAvatar';
-import { useFollowButton, useUserById } from '../../users/context/UsersContext';
+import { useUserById } from '../../users/context/UsersContext';
 import PostsComments from './PostsComments';
 
-export default function Post({ post }) {
+export default function Post({ post, deleteMyPost }) {
+  const getUserById = useUserById();
+  const [userFromList, setUserFromList] = useState(null);
+  const { user } = useUser();
 
-    const getUserById = useUserById();
-    const [ user, setUser ] = useState( null );
-    const toggleFollowState = useFollowButton();
-
-
-    useEffect( () => {
-        const fetchedUser = getUserById( post.userId );
-        if ( fetchedUser ) {
-            setUser( fetchedUser );
-        }
-    }, [ getUserById, post.userId ] );
-
-    async function toggleUserFollowState(user) {
-        await toggleFollowState( user );
+  useEffect(() => {
+    const fetchedUser = getUserById(post.userId);
+    if (fetchedUser) {
+      setUserFromList(fetchedUser);
     }
+  }, [getUserById, post.userId]);
 
-    async function handleFollowButtonClick() {
-        await toggleUserFollowState( user );
-    }
+  return (
+    <>
+      <Card
+        key={post.id}
+        className="max-w my-2 bg-gradient-to-r from-primary-background to-primary-100 bg-opacity-25 backdrop-blur-sm backdrop-filter">
+        <CardHeader className="flex justify-between ">
+          <div className="flex-col">
+            <UserAvatar userId={post.userId} />
+          </div>
+          {userFromList?.id != user.id ? (
+            <FollowButton userFromList={userFromList} />
+          ) : (
+            ''
+          )}
+        </CardHeader>
+        <CardBody className="px-3 py-0 overflow-hidden text-small ">
+          <p className="mb-2 text-lg">{post.title}</p>
+          <Divider />
+          <p className="mt-3 text-medium">{post.body}</p>
+        </CardBody>
+        <CardFooter className="flex justify-between gap-3 ">
+          <div className="flex gap-1">
+            <div className="flex items-center justify-center gap-1">
+              <HeartButton userFromListId={userFromList?.id} />
+            </div>
 
-    return (
-            <>
-                <Card key={ post.id }
-                      className="max-w my-2 bg-gray-600 bg-opacity-25 backdrop-blur-sm backdrop-filter">
-                    <CardHeader className="justify-between">
-                        <div className="flex-col">
-                            <UserAvatar userId={ post.userId }/>
-                        </div>
-                        <Button className={
-                            user?.isFollowed
-                            ? 'bg-transparent text-foreground border-default-200'
-                            :''
-                        }
-                                color="primary"
-                                radius="full"
-                                size="sm"
-                                variant={ user?.isFollowed ? 'bordered':'solid' }
-                                onPress={ handleFollowButtonClick }>
-                            { user?.isFollowed ? 'Unfollow':'Follow' }
-                        </Button>
-                    </CardHeader>
-                    <CardBody className="px-3 py-0 overflow-hidden text-small text-default">
-                        <p>{ post.body }</p>
-                        <span className="pt-2 text-xs font-bold ">
-            { post.tags.map( tag => `#${ tag } ` ) }
-          </span>
-                    </CardBody>
-                    <CardFooter className="flex justify-between gap-3 ">
-                        <div className="flex gap-1">
-                            <div className="flex items-center justify-center gap-1">
-                                <HeartButton/>
-                            </div>
-                            <div className="flex items-center justify-center gap-1 ">
-              <span className="font-semibold text-default text-xs">
-                { Math.floor( Math.random() * 100 ) }.
-                  { Math.floor( Math.random() * 10 ) }K
-              </span>
-                                <span className="font-semibold text-default text-xs">Follow</span>
-                            </div>
-                            <div className="flex items-center justify-center gap-1">
-                                <PostsComments
-                                        postId={ post.id }
-                                        postTitle={ post.title }
-                                        postUser={ user }
-                                />
-                            </div>
-                        </div>
+            <div className="flex items-center justify-center gap-1">
+              <PostsComments
+                postId={post.id}
+                postTitle={post.title}
+                postBody={post.body}
+                postUser={userFromList}
+              />
+            </div>
 
-                        <div className="flex">
-                            <RandomDate/>
-                        </div>
-                    </CardFooter>
-                </Card>
-            </>
-    );
+            {user.id === userFromList?.id ? (
+              <div>
+                <Button
+                  isIconOnly
+                  className="bg-transparent w-0 hover:border border-red-700 hover:text-red-700"
+                  color=""
+                  aria-label="Delete"
+                  onClick={() => deleteMyPost(post)}>
+                  <i className="bi bi-trash"></i>
+                </Button>
+              </div>
+            ) : (
+              ''
+            )}
+          </div>
+        </CardFooter>
+      </Card>
+    </>
+  );
 }

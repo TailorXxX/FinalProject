@@ -2,7 +2,7 @@
 
 ## Croitoru Costin - Final project
 
-This project was realized using React + Vite, NextUI, Sanity.io, Clerk, and other libraries.
+This project was realized using React + Vite, NextUI, json-server, Clerk, and other libraries.
 
 ## Getting Started
 
@@ -18,8 +18,8 @@ This project was realized using React + Vite, NextUI, Sanity.io, Clerk, and othe
 
 ### Development Server
 
-1. The project is using [json-server](https://github.com/typicode/json-server) as a dummy backend, run `npm run server`
-   to have access to the data
+1. Run `npm run server`
+   to have access to the data from server
 
 2. Run `npm run dev`
 
