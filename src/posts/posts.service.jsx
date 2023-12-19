@@ -10,12 +10,16 @@ export async function getPosts() {
   return await performListGetRequest(posts);
 }
 
+export async function getPostsByUserId(userId) {
+  return await performListGetRequest(`${posts}?userId=${userId}`);
+}
+
 export async function addPost(post) {
   return await performPostRequest(posts, post);
 }
 
 export async function editPost(post) {
-  return await performPatchRequest(posts, post);
+  return await performPatchRequest(`${posts}/${post.id}`, post);
 }
 
 export async function deletePost(post) {

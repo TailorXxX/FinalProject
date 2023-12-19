@@ -1,5 +1,4 @@
 import { ClerkProvider, SignedIn, SignedOut } from '@clerk/clerk-react';
-import { dark } from '@clerk/themes';
 import { Route, Routes } from 'react-router-dom';
 import ChatGPT from './chat-gpt/ChatGPT';
 import ThemeProvider from './games/tictactoe/ThemeContext';
@@ -22,7 +21,18 @@ export default function App() {
     <>
       <ClerkProvider
         appearance={{
-          baseTheme: dark,
+          variables: {
+            colorPrimary: '#ffffff',
+            colorTextOnPrimaryBackground: '#e3fff4',
+            colorText: '#e3fff4',
+            colorTextSecondary: '#e3fff4',
+            colorBackground: '#1f5759',
+            colorInputText: '#e3fff4',
+            colorInputBackground: '#e3fff4',
+            colorAlphaShade: '#ffffff',
+            borderRadius: '0px',
+            fontSize: '1.2rem',
+          },
         }}
         publishableKey={clerkPubKey}>
         {/* <Cursor /> */}
@@ -31,37 +41,31 @@ export default function App() {
           <LoggedOffIntro />
         </SignedOut>
 
-        <NavbarNextUI />
         <SignedIn>
           <UsersProvider>
-            <div className="grid grid-cols-12">
-              <div className="col-start-2 col-end-4 ">
-                {/* <AccordionNextUI /> */}
-              </div>
-              <div className="col-start-5 col-end-9 ">
-                <Routes>
-                  <Route
-                    index
-                    element={<FeedPage />}></Route>
-                  <Route
-                    path="/userprofile/:userId"
-                    element={<UserProfilePage />}></Route>
-                  <Route
-                    path="/friends"
-                    element={<FriendsPage />}></Route>
-                  <Route
-                    path="/chat"
-                    element={<ChatGPT />}></Route>
-                  <Route
-                    path="/tic-tac-toe-game"
-                    element={
-                      <ThemeProvider>
-                        <TicTacToeGame />
-                      </ThemeProvider>
-                    }></Route>
-                </Routes>
-              </div>
-              <div className="col-start-10 col-end-12 "></div>
+            <NavbarNextUI />
+            <div className="w-full flex justify-center items-center max-w-xl m-auto">
+              <Routes>
+                <Route
+                  index
+                  element={<FeedPage />}></Route>
+                <Route
+                  path="/userprofile/:userId"
+                  element={<UserProfilePage />}></Route>
+                <Route
+                  path="/friends"
+                  element={<FriendsPage />}></Route>
+                <Route
+                  path="/chat"
+                  element={<ChatGPT />}></Route>
+                <Route
+                  path="/tic-tac-toe-game"
+                  element={
+                    <ThemeProvider>
+                      <TicTacToeGame />
+                    </ThemeProvider>
+                  }></Route>
+              </Routes>
             </div>
           </UsersProvider>
         </SignedIn>

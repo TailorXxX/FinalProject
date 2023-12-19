@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Page from '../../layout/Page';
-import { deletePost, getPosts } from '../posts.service';
+import { deletePost, editPost, getPosts } from '../posts.service';
 import AddPost from './AddPost';
 import Post from './Post';
 
@@ -18,6 +18,19 @@ function FeedPage() {
 
   function getNewPost(newPost) {
     setPosts(previousPosts => [newPost, ...previousPosts]);
+  }
+
+  function addUpdatedPostToList(updatedPost) {
+    const foundPost = posts.filter(post => updatedPost.id == post.id)[0];
+    const index = posts.indexOf(foundPost);
+    const updatedPosts = [...posts];
+    updatedPosts.splice(index, 1, updatedPost);
+    return updatedPosts;
+  }
+
+  async function editMyPost(editedPost) {
+    const isEdited = await editPost(editedPost);
+    setPosts(addUpdatedPostToList(isEdited));
   }
 
   function deletePostFromList(deletedPost) {
@@ -39,6 +52,7 @@ function FeedPage() {
         <Post
           key={post.id}
           post={post}
+          editMyPost={editMyPost}
           deleteMyPost={deleteMyPost}></Post>
       ))}
     </Page>

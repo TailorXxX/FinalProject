@@ -13,7 +13,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <NextThemesProvider
           attribute="class"
           defaultTheme="dark">
-          <main>
+          <main className="w-full">
             <App />
           </main>
         </NextThemesProvider>

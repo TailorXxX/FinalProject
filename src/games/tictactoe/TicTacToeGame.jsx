@@ -1,12 +1,7 @@
 import { useState } from 'react';
 import Board from './Board';
-import { useTheme, useToggleTheme } from './ThemeContext';
-import { Switch } from '@mui/material';
 
 export default function TicTacToeGame() {
-  const darkTheme = useTheme();
-  const toggleTheme = useToggleTheme();
-
   const [history, setHistory] = useState([Array(9).fill(null)]);
   const [currentMove, setCurrentMove] = useState(0);
   const xIsNext = currentMove % 2 === 0;
@@ -37,12 +32,7 @@ export default function TicTacToeGame() {
   });
 
   return (
-    <div className={`${darkTheme == true ? 'dark' : 'light'} game`}>
-      <Switch
-        checked={darkTheme}
-        onChange={toggleTheme}
-      />
-
+    <div className="game">
       <div className="board">
         <Board
           xIsNext={xIsNext}
@@ -56,5 +46,3 @@ export default function TicTacToeGame() {
     </div>
   );
 }
-
-

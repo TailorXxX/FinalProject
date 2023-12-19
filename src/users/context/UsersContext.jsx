@@ -1,6 +1,12 @@
 import { useUser } from '@clerk/clerk-react';
 import { createContext, useContext, useEffect, useState } from 'react';
-import { getAllUsers, toggleUserFollowState } from '../user.service';
+import {
+  createUser,
+  getAllUsers,
+  getUserById,
+  toggleUserFollowState,
+  updateUser,
+} from '../user.service';
 
 const UsersListContext = createContext();
 const SetIsFollowedContext = createContext();
@@ -12,27 +18,45 @@ export const useUserById = () => useContext(UserByIdContext);
 
 export const UsersProvider = ({ children }) => {
   const [users, setUsers] = useState([]);
-  const { user } = useUser();
+  const { user, isSignedIn } = useUser();
+
+  useEffect(() => {
+    if (isSignedIn) {
+      checkUser();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSignedIn]);
 
   useEffect(() => {
     fetchUsers();
   }, []);
 
   async function fetchUsers() {
-    const users = await getAllUsers();
+    const allUsers = await getAllUsers();
+
+    setUsers(allUsers);
+  }
+
+  async function checkUser() {
     const myUser = {
       image: user?.imageUrl,
       id: user?.id,
       firstName: user?.firstName,
       lastName: user?.lastName,
+      fullName: user?.fullName,
+      emailAddress: user?.emailAddresses[0].emailAddress,
     };
-    const allUsers = [...users, myUser];
 
-    setUsers(allUsers);
+    const userOrUndefined = await getUserById(user.id);
+
+    if (userOrUndefined === null || userOrUndefined === undefined) {
+      return await createUser(myUser);
+    }
+    return await updateUser(myUser);
   }
 
   function fetchUserById(id) {
-    return users.filter(user => user.id === id)[0];
+    return users.filter(user => user.id == id)[0];
   }
 
   async function toggleFollowState(userToUpdate) {

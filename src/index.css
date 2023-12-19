@@ -2,9 +2,15 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+:root {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   margin: 0;
   min-height: 100vh;
+  width: 100%;
   background-image: url(../assets/background.jpg);
   background-repeat: no-repeat;
   background-size: cover;
@@ -12,17 +18,77 @@ body {
   overflow-x: hidden;
 }
 
-#leftIntro,
-#rightIntro {
-  /* z-index: 150; */
+.custom--profile-tabs {
+  max-width: fit-content;
+  padding: 0;
+  color: white !important; /* Always white text */
+}
+
+.custom-profile-tabs:hover {
+  color: red !important; /* Red on hover */
+}
+
+.custom-profile-tabs-content[data-selected='true'] {
+  font-weight: bold; /* Bolder for selected tab */
+}
+
+.presentation-scroll {
+  position: relative;
+  text-align: center;
+
+  bottom: -100%;
+  transform-origin: 50% 100%;
+  animation: scroll 20s linear infinite;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateY(200%) scale(1);
+  }
+  50% {
+    transform: translateY(100) scale(0.7);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(0) scale(0.5);
+    opacity: 0.1;
+  }
+}
+
+.black-intro {
+  overflow: hidden;
 }
 
 .slide-left {
   animation: slideLeft 1s ease-in-out forwards;
 }
 
+.hide {
+  animation: hide 1s ease-in-out forwards;
+  animation-delay: 2s;
+  overflow: hidden;
+}
+
 .slide-right {
   animation: slideRight 1s ease-in-out forwards;
+}
+
+.slide-down {
+  transform: translateY(-100%);
+  animation: slideDown 1.3s ease-in-out forwards;
+  /* animation-delay: 0.7s; */
+}
+
+.slide-down-intro {
+  animation: slideDownIntro 1.3s ease-in-out forwards;
+  animation-delay: 0.7s;
+  z-index: 999;
+}
+
+.slide-up-intro {
+  animation: slideUpIntro 1.3s ease-in-out forwards;
+  animation-delay: 0.7s;
+  z-index: 999;
 }
 
 .slide-right-circle {
@@ -31,7 +97,7 @@ body {
 
 .title {
   z-index: 990;
-  color: 000;
+  color: #e3fff4;
   cursor: pointer;
 }
 
@@ -53,8 +119,8 @@ body {
   border-radius: 50%;
   z-index: 200;
   cursor: pointer;
-  background: linear-gradient(#f07e6e, #84cdfa, #5ad1cd);
-  animation: animate 1.2s linear infinite;
+  background: linear-gradient(#2ba5a390, #e3fff490, #2a747690);
+  animation: animate 3s linear infinite;
 }
 
 @keyframes animate {
@@ -71,7 +137,7 @@ body {
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  background: linear-gradient(#84cdfa, #fdd5f9, #1f5759);
+  background: linear-gradient(#2ba5a390, #e3fff490, #2a747690);
 }
 
 .loader span:nth-child(1) {
@@ -97,17 +163,25 @@ body {
   left: 10px;
   right: 10px;
   bottom: 10px;
-  background: ;
-  border: solid white 10px;
+  background: #246567;
+  border: solid #feecfe 5px;
   border-radius: 50%;
 }
 
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .navbar-logo {
-  width: 200px;
+  background: transparent;
+  width: auto;
+  /* height: 6rem; */
+  overflow: hidden;
 }
 
 .profile-page {
-  max-height: 100vh;
 }
 
 .bi.nav-icons {
@@ -161,6 +235,17 @@ body {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
 }
 
+@keyframes hide {
+  from {
+    transform: translateX(0);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(-200%);
+    opacity: 0;
+  }
+}
+
 @keyframes slideLeft {
   from {
     transform: translateX(0);
@@ -183,6 +268,48 @@ body {
   }
 }
 
+@keyframes slideDown {
+  from {
+    transform: translateY(-800%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(-100%);
+    /* opacity: 0.5; */
+  }
+}
+
+@keyframes showPresentation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.9;
+  }
+}
+
+@keyframes slideDownIntro {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(500%);
+    /* opacity: 0.5; */
+  }
+}
+
+@keyframes slideUpIntro {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-500%);
+    /* opacity: 0.5; */
+  }
+}
+
 @keyframes slideRightCircle {
   from {
     transform: translateX(0);
@@ -193,4 +320,20 @@ body {
     opacity: 0;
     pointer-events: none;
   }
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #143738;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2a7476;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #feecfe;
 }

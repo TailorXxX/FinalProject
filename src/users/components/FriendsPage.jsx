@@ -5,7 +5,6 @@ import UserAvatar from './UserAvatar';
 
 export default function FriendsPage() {
   const getUsers = useUsers();
-
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -53,16 +52,15 @@ export default function FriendsPage() {
   }
 
   return (
-    <div className=" m-4">
+    <div className="my-4 w-full">
       <div>
         <Input
           color="primary"
-          clearable
           placeholder="Search friends..."
           onChange={e => setSearchTerm(e.target.value)}
         />
       </div>
-      <div className="">
+      <div className=" ">
         {initialUsers.map(user => (
           <div
             key={user.id}
