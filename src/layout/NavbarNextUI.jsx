@@ -19,6 +19,7 @@ import {
   Tooltip,
 } from '@nextui-org/react';
 import { Link } from 'react-router-dom';
+import logoImage from '../../assets/logo.png';
 
 export default function NavbarNextUI() {
   const { isSignedIn, user } = useUser();
@@ -33,9 +34,9 @@ export default function NavbarNextUI() {
           <div className="logo-container w-16 max-[200px]:hidden">
             <Image
               removeWrapper="true"
-              className="navbar-logo"
+              className="navbar-logo logo"
               alt="LumiVerse Logo"
-              src="../../assets/logo.png"
+              src={logoImage}
             />
           </div>
         </Link>

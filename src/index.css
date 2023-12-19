@@ -18,6 +18,9 @@ body {
   overflow-x: hidden;
 }
 
+.logo {
+  background-image: url(../assets/logo.png);
+}
 .custom--profile-tabs {
   max-width: fit-content;
   padding: 0;
