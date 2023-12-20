@@ -113,6 +113,26 @@ function UserProfilePage() {
               tabContent: ' ',
             }}>
             <Tab
+              key="posts"
+              className="w-full flex"
+              title={
+                <div className="flex items-center space-x-2">
+                  <i className="bi bi-postcard-fill"></i>
+                  <span>Posts</span>
+                </div>
+              }>
+              <div className="w-full h-full p-2">
+                {posts.map(post => (
+                  <Post
+                    key={post.id}
+                    post={post}
+                    editMyPost={editMyPost}
+                    deleteMyPost={deleteMyPost}
+                  />
+                ))}
+              </div>
+            </Tab>
+            <Tab
               key="info"
               title={
                 <div className="flex items-center space-x-2">
@@ -130,26 +150,6 @@ function UserProfilePage() {
                 <p>Age: {user?.age}</p>
                 <p>Eye color: {user?.eyeColor}</p>
                 <p>Gender: {user?.gender}</p>
-              </div>
-            </Tab>
-            <Tab
-              key="posts"
-              className="w-full"
-              title={
-                <div className="flex items-center space-x-2">
-                  <i className="bi bi-postcard-fill"></i>
-                  <span>Posts</span>
-                </div>
-              }>
-              <div className="w-full h-full p-2">
-                {posts.map(post => (
-                  <Post
-                    key={post.id}
-                    post={post}
-                    editMyPost={editMyPost}
-                    deleteMyPost={deleteMyPost}
-                  />
-                ))}
               </div>
             </Tab>
           </Tabs>
